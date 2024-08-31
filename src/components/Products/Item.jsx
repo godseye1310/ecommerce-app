@@ -16,7 +16,7 @@ const Item = ({ title, price, imageUrl }) => {
 					$<span>{price}</span>
 				</span>
 				<button
-					className="rounded-sm bg-sky-300 hover:bg-sky-600 py-2 px-5 font-bold text-white"
+					className="rounded-sm bg-blue-500 hover:bg-sky-900 py-2 px-5 font-bold text-white"
 					type="button"
 				>
 					ADD TO CART
