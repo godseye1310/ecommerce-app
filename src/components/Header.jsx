@@ -13,8 +13,8 @@ const Header = () => {
 				<li>
 					<a href="#">ABOUT</a>
 				</li>
-				<a href="#cart" class="cart-holder">
-					cart<span class="cart-number">0</span>
+				<a href="#cart">
+					cart<span>0</span>
 				</a>
 			</ul>
 			<h1 className=" text-6xl text-center text-white font-bold">The Generics</h1>
