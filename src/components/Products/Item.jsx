@@ -2,21 +2,21 @@ import React from 'react';
 
 const Item = ({ title, price, imageUrl }) => {
 	return (
-		<li className=" bg-gray-300 border rounded-sm m-2">
-			<h3 className=" text-center font-bold text-xl">{title}</h3>
+		<li className=" bg-black/25 rounded-sm mx-4 my-4 p-4">
+			<h3 className=" text-center font-bold text-2xl text-white/80 mb-4">{title}</h3>
 			<div className=" overflow-hidden">
 				<img
-					className=" hover:scale-150 overflow-hidden transition duration-300"
+					className=" hover:scale-150 transition duration-300"
 					src={imageUrl}
 					alt="product img"
 				/>
 			</div>
-			<div className="flex justify-between items-center p-2">
-				<span>
+			<div className="flex justify-between items-center mt-3">
+				<span className="text-white font-bold text-xl">
 					$<span>{price}</span>
 				</span>
 				<button
-					className="rounded-sm bg-sky-300 hover:bg-sky-600 py-1 px-3 font-medium text-white"
+					className="rounded-sm bg-sky-300 hover:bg-sky-600 py-2 px-5 font-bold text-white"
 					type="button"
 				>
 					ADD TO CART

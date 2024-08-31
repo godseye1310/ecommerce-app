@@ -2,8 +2,8 @@ import React from 'react';
 
 const Header = () => {
 	return (
-		<header className=" bg-gray-300">
-			<ul className=" bg-black text-white flex justify-around p-4">
+		<header className="flex flex-col">
+			<ul className=" bg-black text-white flex justify-around p-4 w-full fixed top-0 z-10">
 				<li>
 					<a href="#">HOME</a>
 				</li>
@@ -17,7 +17,10 @@ const Header = () => {
 					cart<span>0</span>
 				</a>
 			</ul>
-			<h1 className=" text-6xl text-center text-white font-bold">The Generics</h1>
+
+			<h1 className=" flex-1 text-6xl text-center text-white font-bold bg-gray-300 pt-16 pb-4">
+				The Generics
+			</h1>
 		</header>
 	);
 };

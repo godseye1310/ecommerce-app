@@ -26,18 +26,14 @@ const Products = () => {
 	];
 
 	return (
-		<>
-			<div className=" mt-5">
-				<h1 className="text-center text-4xl font-semibold">Colors</h1>
-				<ul className=" flex p-2 m-2 items-center justify-between bg-black/50">
-					{productsArr.map((item) => {
-						return (
-							<Item title={item.title} price={item.price} imageUrl={item.imageUrl} />
-						);
-					})}
-				</ul>
-			</div>
-		</>
+		<div className=" mt-5 flex items-center flex-col">
+			<h1 className="text-center text-4xl font-black font-mono ">Colors</h1>
+			<ul className=" flex p-2 m-2 px-5 flex-wrap items-stretch justify-around max-w-[1000px]">
+				{productsArr.map((item) => {
+					return <Item title={item.title} price={item.price} imageUrl={item.imageUrl} />;
+				})}
+			</ul>
+		</div>
 	);
 };
 
