@@ -26,13 +26,20 @@ const Products = () => {
 	];
 
 	return (
-		<div className=" mt-5 flex items-center flex-col">
-			<h1 className="text-center text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+		<div className=" mt-5 flex items-center flex-col mb-2 pb-20">
+			<h1 className="text-center text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 max-xs:text-3xl">
 				Colors
 			</h1>
 			<ul className=" flex p-2 m-2 px-5 flex-wrap items-stretch justify-around max-w-[1000px]">
-				{productsArr.map((item) => {
-					return <Item title={item.title} price={item.price} imageUrl={item.imageUrl} />;
+				{productsArr.map((item, i) => {
+					return (
+						<Item
+							key={i}
+							title={item.title}
+							price={item.price}
+							imageUrl={item.imageUrl}
+						/>
+					);
 				})}
 			</ul>
 		</div>

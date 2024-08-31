@@ -3,15 +3,15 @@ import { FaYoutube, FaSpotify, FaFacebookSquare } from 'react-icons/fa';
 
 const Footer = () => {
 	return (
-		<footer className=" bg-sky-500 text-white p-5 mt-3 flex justify-around">
-			<div className=" text-4xl text-center font-bold ">The Generics</div>
+		<footer className=" bg-sky-500 text-white p-5 flex justify-around text-4xl items-center max-xs:text-xl w-full absolute bottom-0">
+			<div className=" text-center font-bold ">The Generics</div>
 			<div>
 				<ul className="flex gap-8 items-center ">
 					<li className="bg-white/90 rounded-sm">
 						<a
 							href="https://www.youtube.com"
 							target=""
-							className="text-[#FF000096] hover:text-[#FF0000] text-5xl"
+							className="text-[#FF000096] hover:text-[#FF0000] "
 						>
 							<FaYoutube />
 						</a>
@@ -19,7 +19,7 @@ const Footer = () => {
 					<li className="bg-white/90 rounded-sm">
 						<a
 							href="https://spotify.com"
-							className=" text-[#1DB95496] hover:text-[#1DB954] text-5xl"
+							className=" text-[#1DB95496] hover:text-[#1DB954]"
 						>
 							<FaSpotify />
 						</a>
@@ -27,7 +27,7 @@ const Footer = () => {
 					<li className="bg-white/90 rounded-sm">
 						<a
 							href="https://facebook.com"
-							className="text-5xl text-[#1877F296] hover:text-[#1877F2] "
+							className=" text-[#1877F296] hover:text-[#1877F2] "
 						>
 							<FaFacebookSquare />
 						</a>
