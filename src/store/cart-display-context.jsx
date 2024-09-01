@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 
 export const Display = React.createContext();
 
-export const CartDisplay = ({ children }) => {
+export const CartDisplayProvider = ({ children }) => {
 	const [cartDisplay, setCartDisplay] = useState(false);
 	const handleCartDisplay = (show) => {
 		setCartDisplay(show);

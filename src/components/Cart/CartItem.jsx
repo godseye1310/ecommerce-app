@@ -3,7 +3,7 @@ import React from 'react';
 const CartItem = ({ title, price, imageUrl, quantity }) => {
 	return (
 		<tr className="font-bold box-content">
-			<td className="px-6 py-4 font-medium whitespace-nowrap flex items-center gap-2 max-sm:px-2 text-wrap">
+			<td className="px-6 py-4 font-medium whitespace-nowrap flex items-center gap-2 max-sm:px-2 text-wrap text-left">
 				<span>
 					<img
 						className="size-20 rounded-lg max-sm:size-10"

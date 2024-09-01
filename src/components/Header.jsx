@@ -1,12 +1,19 @@
 import React from 'react';
 import { FaCartShopping } from 'react-icons/fa6';
 import useCartDisplay from '../store/cart-display-context';
+import useCart from '../store/cart-context';
 
 const Header = () => {
 	const { handleCartDisplay } = useCartDisplay();
+	const { cart } = useCart();
 	const showCart = () => {
 		handleCartDisplay(true);
 	};
+
+	const totalItems = cart.reduce((acc, curr) => {
+		return acc + curr.quantity;
+	}, 0);
+
 	return (
 		<header className="bg-gray-300 flex flex-col relative w-full">
 			<div className="  bg-black text-white p-4 flex w-full fixed top-0 z-10">
@@ -26,7 +33,7 @@ const Header = () => {
 					onClick={showCart}
 				>
 					<FaCartShopping className="mr-1" />
-					cart <span className="ml-2">0</span>
+					cart <span className="ml-2">{totalItems}</span>
 				</button>
 			</div>
 

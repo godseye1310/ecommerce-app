@@ -35,6 +35,7 @@ const Products = () => {
 					return (
 						<Item
 							key={i}
+							id={Math.random()}
 							title={item.title}
 							price={item.price}
 							imageUrl={item.imageUrl}

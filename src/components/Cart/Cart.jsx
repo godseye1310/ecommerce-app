@@ -1,6 +1,7 @@
 import React from 'react';
 import CartItem from './CartItem';
 import useCartDisplay from '../../store/cart-display-context';
+import useCart from '../../store/cart-context';
 
 const cartElements = [
 	{
@@ -25,6 +26,8 @@ const cartElements = [
 
 const Cart = () => {
 	const { cartDisplay, handleCartDisplay } = useCartDisplay();
+
+	const { cart, total } = useCart();
 
 	const closeCart = () => {
 		handleCartDisplay(false);
@@ -55,7 +58,7 @@ const Cart = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{cartElements.map((item, i) => {
+							{cart.map((item, i) => {
 								return (
 									<CartItem
 										key={i}
@@ -74,7 +77,7 @@ const Cart = () => {
 			<div className="flex justify-end max-sm:justify-around text-2xl mx-5">
 				<span className="mr-5 font-bold">Total</span>
 				<span className="ml-5">
-					$<span>0</span>
+					$<span>{total}</span>
 				</span>
 			</div>
 

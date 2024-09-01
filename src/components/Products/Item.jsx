@@ -1,6 +1,21 @@
 import React from 'react';
+import useCart from '../../store/cart-context';
 
-const Item = ({ title, price, imageUrl }) => {
+const Item = ({ title, price, imageUrl, id }) => {
+	const { addCartItem } = useCart();
+
+	const handleAddCart = () => {
+		const item = {
+			id: id,
+			title: title,
+			price: +price,
+			imageUrl: imageUrl,
+			quantity: 1,
+		};
+
+		addCartItem(item);
+	};
+
 	return (
 		<li className=" bg-black/25 rounded-sm mx-4 my-4 p-4">
 			<h3 className=" text-center font-bold text-2xl text-white/80 mb-4">{title}</h3>
@@ -18,6 +33,7 @@ const Item = ({ title, price, imageUrl }) => {
 				<button
 					className="rounded-sm bg-blue-500 hover:bg-sky-900 py-2 px-5 font-bold text-white"
 					type="button"
+					onClick={handleAddCart}
 				>
 					ADD TO CART
 				</button>
