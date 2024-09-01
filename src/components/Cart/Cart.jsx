@@ -3,26 +3,26 @@ import CartItem from './CartItem';
 import useCartDisplay from '../../store/cart-display-context';
 import useCart from '../../store/cart-context';
 
-const cartElements = [
-	{
-		title: 'Colors',
-		price: 100,
-		imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-		quantity: 2,
-	},
-	{
-		title: 'Black and white Colors',
-		price: 50,
-		imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-		quantity: 3,
-	},
-	{
-		title: 'Yellow and Black Colors',
-		price: 70,
-		imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-		quantity: 1,
-	},
-];
+// const cartElements = [
+// 	{
+// 		title: 'Colors',
+// 		price: 100,
+// 		imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+// 		quantity: 2,
+// 	},
+// 	{
+// 		title: 'Black and white Colors',
+// 		price: 50,
+// 		imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
+// 		quantity: 3,
+// 	},
+// 	{
+// 		title: 'Yellow and Black Colors',
+// 		price: 70,
+// 		imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+// 		quantity: 1,
+// 	},
+// ];
 
 const Cart = () => {
 	const { cartDisplay, handleCartDisplay } = useCartDisplay();
@@ -42,7 +42,7 @@ const Cart = () => {
 			<h1 className="pb-4 pt-6 text-center font-bold text-4xl">CART</h1>
 			<button
 				type="button"
-				className=" mr-2 font-bold text-2xl bg-red-500 px-3 py-1 rounded-md absolute top-3 right-2"
+				className=" mr-2 font-bold text-2xl bg-red-600 bg-opacity-50 hover:bg-opacity-85 px-3 py-1 rounded-md absolute top-3 right-2"
 				onClick={closeCart}
 			>
 				X
@@ -52,16 +52,17 @@ const Cart = () => {
 					<table className="w-full text-sm text-center text-white ">
 						<thead className="text-gray-400 uppercase bg-gray-700 ">
 							<tr>
-								<th className="px-6 py-3 max-sm:px-2">Items</th>
+								<th className="px-8 py-3 max-sm:px-2 text-left">Items</th>
 								<th className="px-6 py-3 max-sm:px-2">Price</th>
 								<th className="px-6 py-3 max-sm:px-2">Quantity</th>
 							</tr>
 						</thead>
 						<tbody>
-							{cart.map((item, i) => {
+							{cart.map((item) => {
 								return (
 									<CartItem
-										key={i}
+										key={item.id}
+										id={item.id}
 										title={item.title}
 										price={item.price}
 										imageUrl={item.imageUrl}
@@ -74,7 +75,7 @@ const Cart = () => {
 				</div>
 			</div>
 
-			<div className="flex justify-end max-sm:justify-around text-2xl mx-5">
+			<div className="flex justify-end max-sm:justify-around text-2xl mx-5 my-2 py-4 border-t-2 border-gray-600">
 				<span className="mr-5 font-bold">Total</span>
 				<span className="ml-5">
 					$<span>{total}</span>

@@ -1,8 +1,15 @@
 import React from 'react';
+import useCart from '../../store/cart-context';
 
-const CartItem = ({ title, price, imageUrl, quantity }) => {
+const CartItem = ({ title, price, imageUrl, quantity, id }) => {
+	const { removeCartItem } = useCart();
+
+	const handleRemove = () => {
+		removeCartItem(id);
+	};
+
 	return (
-		<tr className="font-bold box-content">
+		<tr className="font-bold box-content odd:bg-green-300 odd:bg-opacity-15 even:bg-sky-500 even:bg-opacity-10 ">
 			<td className="px-6 py-4 font-medium whitespace-nowrap flex items-center gap-2 max-sm:px-2 text-wrap text-left">
 				<span>
 					<img
@@ -21,7 +28,8 @@ const CartItem = ({ title, price, imageUrl, quantity }) => {
 				</span>
 				<button
 					type="button"
-					className=" bg-red-500 px-4 py-2 ml-1 rounded-sm max-sm:py-1 max-sm:px-2"
+					onClick={handleRemove}
+					className=" bg-red-500 bg-opacity-60 hover:bg-opacity-90 px-4 py-2 ml-1 rounded-sm max-sm:py-1 max-sm:px-2"
 				>
 					Remove
 				</button>

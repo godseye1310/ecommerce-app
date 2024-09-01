@@ -20,11 +20,26 @@ export const CartProvider = ({ children }) => {
 
 		setTotal((prevTotal) => prevTotal + item.quantity * item.price);
 	};
-	console.log(cart);
-	console.log(total);
+	// console.log(cart);
+	// console.log(total);
+	const removeCartItem = (id) => {
+		console.log(id);
+
+		setCart((prevCart) => {
+			return prevCart.filter((item) => item.id !== id);
+		});
+		setTotal((prevTotal) => {
+			for (const item of cart) {
+				if (item.id === id) {
+					return prevTotal - item.quantity * item.price;
+				}
+			}
+		});
+	};
 
 	const cartctx = {
 		addCartItem,
+		removeCartItem,
 		cart,
 		total,
 	};
