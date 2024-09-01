@@ -1,28 +1,7 @@
 import React from 'react';
 import CartItem from './CartItem';
-import useCartDisplay from '../../store/cart-display-context';
-import useCart from '../../store/cart-context';
-
-// const cartElements = [
-// 	{
-// 		title: 'Colors',
-// 		price: 100,
-// 		imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-// 		quantity: 2,
-// 	},
-// 	{
-// 		title: 'Black and white Colors',
-// 		price: 50,
-// 		imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-// 		quantity: 3,
-// 	},
-// 	{
-// 		title: 'Yellow and Black Colors',
-// 		price: 70,
-// 		imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-// 		quantity: 1,
-// 	},
-// ];
+import useCartDisplay from '../../../store/cart-display-context';
+import useCart from '../../../store/cart-context';
 
 const Cart = () => {
 	const { cartDisplay, handleCartDisplay } = useCartDisplay();
@@ -35,7 +14,7 @@ const Cart = () => {
 
 	return (
 		<div
-			className={`bg-gray-900 min-w-[610px] overflow-x-auto text-white fixed top-[68px] right-0 h-full p-5 z-20 transition ease-linear duration-300 ${
+			className={`bg-gray-900 min-w-[610px] text-white fixed top-[68px] right-0 h-full p-5 z-20 transition ease-linear duration-300 ${
 				cartDisplay ? 'translate-x-0 scale-x-100' : 'translate-x-full scale-x-0'
 			} max-sm:min-w-full max-sm:p-1`}
 		>

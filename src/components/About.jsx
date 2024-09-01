@@ -4,11 +4,17 @@ import bandImg from '../assets/Band Members.png';
 const About = () => {
 	return (
 		<div>
-			<section id="about">
-				<h2>About</h2>
+			<section id="about" className="pb-20 max-w-[900px] my-0 mx-auto text-lg">
+				<h2 className="text-5xl font-bold text-center capitalize p-5 font-serif ">
+					About
+				</h2>
 				<div>
-					<img src={bandImg} alt="Band-Members" />
-					<p>
+					<img
+						src={bandImg}
+						alt="Band-Members"
+						className=" size-52 rounded-full mx-12 my-5 float-left"
+					/>
+					<p className=" m-5 text-[#777] ">
 						Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of sorrows,
 						hates no prosecutors will unfold in the enduring of which were born in it?
 						Often leads smallest mistake some pain main responsibilities are to stand for
