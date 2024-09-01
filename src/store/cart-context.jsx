@@ -23,8 +23,6 @@ export const CartProvider = ({ children }) => {
 	// console.log(cart);
 	// console.log(total);
 	const removeCartItem = (id) => {
-		console.log(id);
-
 		setCart((prevCart) => {
 			return prevCart.filter((item) => item.id !== id);
 		});
