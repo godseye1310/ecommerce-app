@@ -22,6 +22,9 @@ const Header = () => {
 					<li>
 						<NavLink to="/about">ABOUT</NavLink>
 					</li>
+					<li>
+						<NavLink to="/contact">CONTACT US</NavLink>
+					</li>
 				</ul>
 
 				{cartBtn.pathname === '/' && <HeaderCartBtn />}
