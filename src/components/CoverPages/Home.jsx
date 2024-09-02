@@ -35,12 +35,15 @@ const tourData = [
 
 const Home = () => {
 	return (
-		<section className="pb-32 px-6 max-w-[900px] my-0 mx-auto text-lg">
+		<section className="pb-32 px-6 max-w-[900px] my-0 mx-auto text-lg max-sm:text-sm max-xs:text-xs">
 			<h2 className="text-5xl font-bold text-center capitalize p-5 font-serif">TOURS</h2>
 			<div>
 				{tourData.map((tour, i) => {
 					return (
-						<div className="flex p-2 border-b border-gray-900 text-[#777] font-semibold text-wrap">
+						<div
+							key={i}
+							className="flex p-2 border-b border-gray-900 text-[#777] font-semibold text-wrap"
+						>
 							<span className=" w-[12%] text-gray-900 font-bold">{tour.date}</span>
 							<span className="w-1/4">{tour.city}</span>
 							<span className="w-[53%]">{tour.venue}</span>

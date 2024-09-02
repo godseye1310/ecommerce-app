@@ -14,16 +14,52 @@ const Header = () => {
 					}`}
 				>
 					<li>
-						<NavLink to="/home">HOME</NavLink>
+						<NavLink
+							to="/home"
+							className={({ isActive }) =>
+								isActive
+									? 'underline underline-offset-2 text-yellow-600'
+									: 'hover:text-yellow-600'
+							}
+						>
+							HOME
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/">STORE</NavLink>
+						<NavLink
+							to="/"
+							className={({ isActive }) =>
+								isActive
+									? 'underline underline-offset-2 text-yellow-600'
+									: 'hover:text-yellow-600'
+							}
+						>
+							STORE
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/about">ABOUT</NavLink>
+						<NavLink
+							to="/about"
+							className={({ isActive }) =>
+								isActive
+									? 'underline underline-offset-2 text-yellow-600'
+									: 'hover:text-yellow-600'
+							}
+						>
+							ABOUT
+						</NavLink>
 					</li>
 					<li>
-						<NavLink to="/contact">CONTACT US</NavLink>
+						<NavLink
+							to="/contact"
+							className={({ isActive }) =>
+								isActive
+									? 'underline underline-offset-2 text-yellow-600'
+									: 'hover:text-yellow-600'
+							}
+						>
+							CONTACT US
+						</NavLink>
 					</li>
 				</ul>
 

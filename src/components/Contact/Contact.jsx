@@ -49,13 +49,13 @@ const Contact = () => {
 	};
 
 	return (
-		<section className="pb-20 pt-10 max-w-[900px] my-5 mx-auto text-lg flex justify-around items-baseline">
-			<h2 className="text-5xl font-bold mb-6 text-center capitalize p-5 font-serif ">
+		<section className="pb-20 pt-10 px-5 max-w-[900px] my-5 mx-auto text-lg flex justify-around items-baseline max-sm:flex-col max-sm:items-center ">
+			<h2 className="text-5xl font-bold mb-6 text-left capitalize p-5 font-serif">
 				Contact US
 			</h2>
 			<form
 				onSubmit={handleSubmit}
-				className="w-full max-w-md p-8 bg-white shadow-md rounded-lg"
+				className="w-full max-w-md p-8 bg-white shadow-md rounded-lg mx-5"
 			>
 				<div className="mb-4">
 					<label htmlFor="name" className="block text-gray-700 font-medium mb-2">

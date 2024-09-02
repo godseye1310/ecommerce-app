@@ -7,8 +7,8 @@ import Products from './components/Products/Products';
 // import { CartProvider } from './store/cart-context';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './layout/RootLayout';
-import About from './components/About';
-import Home from './components/Home';
+import About from './components/CoverPages/About';
+import Home from './components/CoverPages/Home';
 import Contact from './components/Contact/Contact';
 
 const router = createBrowserRouter([
