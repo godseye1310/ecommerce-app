@@ -3,14 +3,14 @@ import { NavLink, useLocation } from 'react-router-dom';
 import HeaderCartBtn from '../components/Products/Cart/HeaderCartBtn';
 
 const Header = () => {
-	const cartBtn = useLocation();
+	const location = useLocation();
 
 	return (
 		<header className="bg-[dimgray] flex flex-col relative w-full">
 			<div className="  bg-black text-white p-4 flex w-full fixed top-0 z-10">
 				<ul
 					className={` flex flex-1 justify-center items-center gap-20 pl-24 font-semibold max-sm:text-sm max-sm:gap-6 max-sm:pl-16 max-xs:justify-start max-xs:pl-0 ${
-						cartBtn.pathname === '/products' ? '' : 'pr-24'
+						location.pathname.startsWith('/products') ? '' : 'pr-24'
 					}`}
 				>
 					<li>
@@ -63,7 +63,7 @@ const Header = () => {
 					</li>
 				</ul>
 
-				{cartBtn.pathname === '/products' && <HeaderCartBtn />}
+				{location.pathname.startsWith('/products') && <HeaderCartBtn />}
 			</div>
 
 			<div className="pt-20 pb-8 flex flex-col items-center">
@@ -71,7 +71,7 @@ const Header = () => {
 					The Generics
 				</h1>
 
-				{cartBtn.pathname === '/home' && (
+				{location.pathname === '/home' && (
 					<div className="mt-10 py-5 text-white/80 flex flex-col items-center gap-5">
 						<button className=" block bg-black/35 hover:bg-black/65 border-2 border-[#56CCF2] border-opacity-60 hover:border-opacity-90 px-4 py-3 rounded text-2xl font-medium">
 							Get our Latest Album
