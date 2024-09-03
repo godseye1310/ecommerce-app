@@ -1,7 +1,7 @@
 import React from 'react';
 import Item from './Item';
 
-const productsArr = [
+export const productsArr = [
 	{
 		title: 'Colors',
 		price: 100,

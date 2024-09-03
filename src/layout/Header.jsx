@@ -10,7 +10,7 @@ const Header = () => {
 			<div className="  bg-black text-white p-4 flex w-full fixed top-0 z-10">
 				<ul
 					className={` flex flex-1 justify-center items-center gap-20 pl-24 font-semibold max-sm:text-sm max-sm:gap-6 max-sm:pl-16 max-xs:justify-start max-xs:pl-0 ${
-						cartBtn.pathname === '/' ? '' : 'pr-24'
+						cartBtn.pathname === '/products' ? '' : 'pr-24'
 					}`}
 				>
 					<li>
@@ -27,7 +27,7 @@ const Header = () => {
 					</li>
 					<li>
 						<NavLink
-							to="/"
+							to="/products"
 							className={({ isActive }) =>
 								isActive
 									? 'underline underline-offset-2 text-yellow-600'
@@ -63,7 +63,7 @@ const Header = () => {
 					</li>
 				</ul>
 
-				{cartBtn.pathname === '/' && <HeaderCartBtn />}
+				{cartBtn.pathname === '/products' && <HeaderCartBtn />}
 			</div>
 
 			<div className="pt-20 pb-8 flex flex-col items-center">

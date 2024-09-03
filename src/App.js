@@ -10,16 +10,18 @@ import RootLayout from './layout/RootLayout';
 import About from './components/CoverPages/About';
 import Home from './components/CoverPages/Home';
 import Contact from './components/Contact/Contact';
+import ProductDetails from './components/Products/ProductPage/ProductDetails';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <RootLayout />,
 		children: [
-			{ path: '/', element: <Products /> },
-			{ path: '/about', element: <About /> },
 			{ path: '/home', element: <Home /> },
+			{ path: '/products', element: <Products /> },
+			{ path: '/about', element: <About /> },
 			{ path: '/contact', element: <Contact /> },
+			{ path: '/products/:id', element: <ProductDetails /> },
 		],
 	},
 ]);
