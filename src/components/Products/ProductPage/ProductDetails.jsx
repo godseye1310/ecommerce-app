@@ -7,16 +7,18 @@ import useCartDisplay from '../../../store/cart-display-context';
 import { FaStar } from 'react-icons/fa6';
 
 const ProductDetails = () => {
-	const { id } = useParams();
+	const { productID } = useParams();
 	// console.log(productsArr);
-	const product = productsArr[id];
+	const product = productsArr.find(
+		(item) => `cx${productsArr.indexOf(item)}ay` === productID
+	);
 	// console.log(product);
 
 	const { addCartItem } = useCart();
 	const handleAddCart = () => {
 		const item = {
 			...product,
-			id: +id,
+			id: productID,
 			quantity: 1,
 		};
 		addCartItem(item);
@@ -96,7 +98,7 @@ const ProductDetails = () => {
 									</tr>
 									<tr className=" font-medium box-content odd:bg-black/45 even:bg-gray-500">
 										<td className="px-6 py-2">Color code</td>
-										<td className="px-6 py-2">{id}</td>
+										<td className="px-6 py-2">{productID}</td>
 									</tr>
 									<tr className=" font-medium box-content odd:bg-black/45 even:bg-gray-500">
 										<td className="px-6 py-2">Quantity</td>

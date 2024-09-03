@@ -1,11 +1,6 @@
 import React from 'react';
-// import Header from './layout/Header';
-// import Footer from './layout/Footer';
 import Products from './components/Products/Products';
-// import Cart from './components/Cart/Cart';
-// import { CartDisplayProvider } from './store/cart-display-context';
-// import { CartProvider } from './store/cart-context';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import RootLayout from './layout/RootLayout';
 import About from './components/CoverPages/About';
 import Home from './components/CoverPages/Home';
@@ -17,16 +12,15 @@ const router = createBrowserRouter([
 		path: '/',
 		element: <RootLayout />,
 		children: [
+			{ path: '/', element: <Navigate to="/products" replace /> },
 			{ path: '/home', element: <Home /> },
 			{ path: '/products', element: <Products /> },
 			{ path: '/about', element: <About /> },
 			{ path: '/contact', element: <Contact /> },
-			{ path: '/products/:id', element: <ProductDetails /> },
+			{ path: '/products/:productID', element: <ProductDetails /> },
 		],
 	},
 ]);
-
-// return
 
 function App() {
 	return <RouterProvider router={router} />;

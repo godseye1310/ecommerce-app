@@ -35,7 +35,7 @@ const ProductList = () => {
 					return (
 						<Item
 							key={i}
-							id={i}
+							id={`cx${i}ay`}
 							title={item.title}
 							price={item.price}
 							imageUrl={item.imageUrl}

@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
 	const [total, setTotal] = useState(0);
 
 	const addCartItem = (item) => {
-		// console.log(item);
+		console.log(item);
 		setCart((prevCart) => {
 			for (let preItem of prevCart) {
 				if (preItem.id === item.id) {
