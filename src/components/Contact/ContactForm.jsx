@@ -3,13 +3,12 @@ import React, { useState } from 'react';
 const API_URL =
 	'https://ecommerce-userdata-default-rtdb.asia-southeast1.firebasedatabase.app/userData';
 
-const Contact = () => {
+const ContactForm = () => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
 		phone: '',
 	});
-
 	// console.log('re-rendered');
 
 	const handleChange = (e) => {
@@ -33,18 +32,23 @@ const Contact = () => {
 					'Content-Type': 'application/json',
 				},
 			});
-			console.log(response.status);
+			console.log(response.statusText);
+			if (!response.ok) {
+				throw new Error(`Contact Failed. HTTP error! status: ${response.statusText}`);
+			}
 
-			const data = response.json();
+			//  to parse the response data. *Optional!! (NOT really Needed here in 'POST')
+			const data = await response.json();
 			console.log(data);
-			setFormData((prevData) => ({
-				...prevData,
+
+			setFormData((prevFormData) => ({
+				...prevFormData,
 				name: '',
 				email: '',
 				phone: '',
 			}));
 		} catch (error) {
-			console.log(error);
+			console.log('Error : ', error.message);
 		}
 	};
 
@@ -116,4 +120,4 @@ const Contact = () => {
 	);
 };
 
-export default Contact;
+export default ContactForm;

@@ -2,7 +2,7 @@ import React from 'react';
 import useCart from '../../store/cart-context';
 import { Link } from 'react-router-dom';
 
-const Item = ({ title, price, imageUrl, id }) => {
+const ProductItem = ({ title, price, imageUrl, id }) => {
 	const { addCartItem } = useCart();
 
 	const handleAddCart = () => {
@@ -45,4 +45,4 @@ const Item = ({ title, price, imageUrl, id }) => {
 	);
 };
 
-export default Item;
+export default ProductItem;

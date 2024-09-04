@@ -1,11 +1,11 @@
 import React from 'react';
-import Products from './components/Products/Products';
+import Products from './pages/Products';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
-import RootLayout from './layout/RootLayout';
-import About from './components/CoverPages/About';
-import Home from './components/CoverPages/Home';
-import Contact from './components/Contact/Contact';
-import ProductDetails from './components/Products/ProductPage/ProductDetails';
+import RootLayout from './components/layout/RootLayout';
+import About from './pages/About';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import ProductDetails from './pages/ProductDetails';
 
 const router = createBrowserRouter([
 	{
@@ -13,9 +13,9 @@ const router = createBrowserRouter([
 		element: <RootLayout />,
 		children: [
 			{ path: '/', element: <Navigate to="/products" replace /> },
-			{ path: '/home', element: <Home /> },
 			{ path: '/products', element: <Products /> },
 			{ path: '/about', element: <About /> },
+			{ path: '/home', element: <Home /> },
 			{ path: '/contact', element: <Contact /> },
 			{ path: '/products/:productID', element: <ProductDetails /> },
 		],

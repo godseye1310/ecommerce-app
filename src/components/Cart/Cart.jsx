@@ -1,7 +1,7 @@
 import React from 'react';
 import CartItem from './CartItem';
-import useCartDisplay from '../../../store/cart-display-context';
-import useCart from '../../../store/cart-context';
+import useCartDisplay from '../../store/cart-display-context';
+import useCart from '../../store/cart-context';
 
 const Cart = () => {
 	const { cartDisplay, handleCartDisplay } = useCartDisplay();

@@ -1,5 +1,5 @@
 import React from 'react';
-import bandImg from '../../assets/Band Members.png';
+import bandImg from '../assets/Band Members.png';
 
 const About = () => {
 	return (

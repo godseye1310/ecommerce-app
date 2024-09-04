@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaCartShopping } from 'react-icons/fa6';
-import useCart from '../../../store/cart-context';
-import useCartDisplay from '../../../store/cart-display-context';
+import useCart from '../../store/cart-context';
+import useCartDisplay from '../../store/cart-display-context';
 
 const HeaderCartBtn = () => {
 	const { handleCartDisplay } = useCartDisplay();

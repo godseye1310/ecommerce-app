@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import HeaderCartBtn from '../components/Products/Cart/HeaderCartBtn';
+import HeaderCartBtn from '../Cart/HeaderCartBtn';
 
 const Header = () => {
 	const location = useLocation();
