@@ -9,7 +9,7 @@ const Header = () => {
 		<header className="bg-[dimgray] flex flex-col relative w-full">
 			<div className="  bg-black text-white p-4 flex w-full fixed top-0 z-10">
 				<ul
-					className={` flex flex-1 justify-center items-center gap-20 pl-24 font-semibold max-sm:text-sm max-sm:gap-6 max-sm:pl-16 max-xs:justify-start max-xs:pl-0 ${
+					className={` flex flex-1 justify-center items-center gap-10 pl-24 font-semibold max-md:justify-start max-md:pl-0 max-sm:text-sm max-sm:gap-6 max-xs:text-xs max-xs:gap-3 ${
 						location.pathname.startsWith('/products') ? '' : 'pr-24'
 					}`}
 				>
