@@ -1,32 +1,38 @@
 import React from 'react';
 import useCart from '../../store/cart-context';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 const ProductItem = ({ title, price, imageUrl, id }) => {
 	const { addCartItem } = useCart();
 
-	const API_URL =
-		'https://crudcrud.com/api/f2e5e17aa46b4f3e9353bee15071337e/cartgilmailcom';
+	const item = {
+		id: id,
+		title: title,
+		price: +price,
+		imageUrl: imageUrl,
+		quantity: 1,
+	};
 
-	const handleAddCart = async () => {
-		const item = {
-			id: id,
-			title: title,
-			price: +price,
-			imageUrl: imageUrl,
-			quantity: 1,
-		};
+	const handleAddCart = () => {
+		addCartItem(item);
 
-		// addCartItem(item);
-		try {
-			const response = await axios.post(API_URL, item);
-			console.log(response.data);
-			// console.log(response.status, response.statusText, 'List POST Success');
-			console.log(response);
-		} catch (error) {
-			console.log(error);
-		}
+		// if (getItemResponse.data) {
+		// 	let itemExists = false;
+		// 	for (let data of getItemResponse.data) {
+		// 		if (data.id === item.id) {
+		// 			itemExists = true;
+		// 			const updateItem = { ...item, quantity: data.quantity + 1 };
+		// 			const putItemResponse = await axios.put(`${API_URL}/${data._id}`, updateItem);
+		// 			console.log(putItemResponse.statusText);
+		// 			break;
+		// 		}
+		// 	}
+		// 	if (!itemExists) {
+		// 		const response = await axios.post(API_URL, item);
+		// 		console.log(response.data);
+		// 		console.log(response.status, response.statusText, 'List POST Success');
+		// 	}
+		// }
 	};
 
 	return (
