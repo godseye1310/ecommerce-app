@@ -27,17 +27,17 @@ export const CartProvider = ({ children }) => {
 		// 	return [...prevCart, item];
 		// });
 
-		const cleanMail = await mail.replace(/[@.]/g, '');
-		console.log(cleanMail);
+		// const cleanMail = await mail.replace(/[@.]/g, '');
+		// console.log(cleanMail);
 
-		try {
-			const response = await axios.post(`${API_URL}${cleanMail}`, cart);
-			console.log(response.data);
-			// console.log(response.status, response.statusText, 'List POST Success');
-			setCart((prevCart) => [...prevCart, response.data]);
-		} catch (error) {
-			console.log(error);
-		}
+		// try {
+		// 	const response = await axios.post(`${API_URL}${cleanMail}`, cart);
+		// 	console.log(response.data);
+		// 	// console.log(response.status, response.statusText, 'List POST Success');
+		// 	setCart((prevCart) => [...prevCart, response.data]);
+		// } catch (error) {
+		// 	console.log(error);
+		// }
 
 		setTotal((prevTotal) => prevTotal + item.quantity * item.price);
 	};
@@ -57,14 +57,14 @@ export const CartProvider = ({ children }) => {
 	};
 
 	const loginCartHandle = async () => {
-		try {
-			const response = await axios.get(`${API_URL}/gilmailcom`);
-			console.log('Added', response.data);
-			console.log(response.status, response.statusText, 'Fetch on Refresh Success');
-			setCart(response.data);
-		} catch (error) {
-			console.log(error);
-		}
+		// try {
+		// 	const response = await axios.get(`${API_URL}/gilmailcom`);
+		// 	console.log('Added', response.data);
+		// 	console.log(response.status, response.statusText, 'Fetch on Refresh Success');
+		// 	setCart(response.data);
+		// } catch (error) {
+		// 	console.log(error);
+		// }
 	};
 
 	const cartctx = {
