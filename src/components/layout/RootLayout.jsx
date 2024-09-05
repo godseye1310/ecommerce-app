@@ -8,7 +8,7 @@ import { CartDisplayProvider } from '../../store/cart-display-context';
 const RootLayout = () => {
 	return (
 		<>
-			<main className="relative min-h-svh min-w-[360px]">
+			<main className=" bg-gray-100 relative min-h-svh">
 				<CartProvider>
 					<CartDisplayProvider>
 						<Header />

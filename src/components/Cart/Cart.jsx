@@ -14,7 +14,7 @@ const Cart = () => {
 
 	return (
 		<div
-			className={`bg-gray-900 min-w-[610px] text-white fixed top-[68px] right-0 h-full p-5 z-20 transition ease-linear duration-300 ${
+			className={`bg-gray-900 min-w-[610px] text-white fixed top-[67px] right-0 h-full p-5 z-20 transition ease-linear duration-300 ${
 				cartDisplay ? 'translate-x-0 scale-x-100' : 'translate-x-full scale-x-0'
 			} max-sm:min-w-full max-sm:p-1`}
 		>

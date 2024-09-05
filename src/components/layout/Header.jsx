@@ -1,9 +1,16 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import HeaderCartBtn from '../Cart/HeaderCartBtn';
+import useAuth from '../../store/auth-context';
 
 const Header = () => {
 	const location = useLocation();
+	const { isLoggedIn, logout } = useAuth();
+
+	const handleLogout = () => {
+		// navigateTo.replace('/auth');
+		logout();
+	};
 
 	return (
 		<header className="bg-[dimgray] flex flex-col relative w-full">
@@ -25,18 +32,20 @@ const Header = () => {
 							HOME
 						</NavLink>
 					</li>
-					<li>
-						<NavLink
-							to="/products"
-							className={({ isActive }) =>
-								isActive
-									? 'underline underline-offset-2 text-yellow-600'
-									: 'hover:text-yellow-600'
-							}
-						>
-							STORE
-						</NavLink>
-					</li>
+					{isLoggedIn && (
+						<li>
+							<NavLink
+								to="/products"
+								className={({ isActive }) =>
+									isActive
+										? 'underline underline-offset-2 text-yellow-600'
+										: 'hover:text-yellow-600'
+								}
+							>
+								STORE
+							</NavLink>
+						</li>
+					)}
 					<li>
 						<NavLink
 							to="/about"
@@ -58,9 +67,35 @@ const Header = () => {
 									: 'hover:text-yellow-600'
 							}
 						>
-							CONTACT US
+							Contact Us
 						</NavLink>
 					</li>
+
+					{!isLoggedIn && (
+						<li className=" text-sky-500">
+							<NavLink
+								to="/login"
+								className={({ isActive }) =>
+									isActive
+										? 'underline underline-offset-2 text-yellow-600 bg-white/15 px-2 py-1 rounded'
+										: 'hover:text-yellow-600 hover:bg-white/25 px-2 py-1 rounded bg-sky-500 bg-opacity-35'
+								}
+							>
+								Login
+							</NavLink>
+						</li>
+					)}
+
+					{isLoggedIn && (
+						<li>
+							<button
+								onClick={handleLogout}
+								className="px-2 py-1 bg-red-500 bg-opacity-30 text-[#b22222] hover:text-[#e9967a] rounded hover:bg-red-600 hover:bg-opacity-60"
+							>
+								Logout
+							</button>
+						</li>
+					)}
 				</ul>
 
 				{location.pathname.startsWith('/products') && <HeaderCartBtn />}

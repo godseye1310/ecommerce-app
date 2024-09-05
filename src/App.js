@@ -6,18 +6,20 @@ import About from './pages/About';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import ProductDetails from './pages/ProductDetails';
+import LoginPage from './pages/LoginPage';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <RootLayout />,
 		children: [
-			{ path: '/', element: <Navigate to="/products" replace /> },
+			{ path: '/', element: <Navigate to="/home" replace /> },
 			{ path: '/products', element: <Products /> },
 			{ path: '/about', element: <About /> },
 			{ path: '/home', element: <Home /> },
 			{ path: '/contact', element: <Contact /> },
 			{ path: '/products/:productID', element: <ProductDetails /> },
+			{ path: '/login', element: <LoginPage /> },
 		],
 	},
 ]);
