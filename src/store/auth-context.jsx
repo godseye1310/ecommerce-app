@@ -4,7 +4,7 @@ const AuthContext = React.createContext();
 
 export const AuthContextProvider = ({ children }) => {
 	const [token, setToken] = useState(localStorage.getItem('token') || null);
-	const [cartMail, setCartMail] = useState(localStorage.getItem('email') || '');
+	const [cartMail, setCartMail] = useState(localStorage.getItem('cartMail') || '');
 
 	const isLoggedIn = !!token;
 

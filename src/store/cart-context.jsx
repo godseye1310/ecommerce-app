@@ -5,15 +5,20 @@ import useAuth from './auth-context';
 export const CartData = React.createContext();
 
 let API_URL = '';
+const API_ENDPOINT = 'b0efe9f66af8418983d34d7950436d3d';
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
 	const [total, setTotal] = useState(0);
 
 	const { isLoggedIn, cartMail } = useAuth();
 
-	API_URL = `https://crudcrud.com/api/34801e6e01cb46088819402541f1afde/CartOf${cartMail
-		.split(/[@.]/)
-		.join('')}`;
+	// Update the API URL dynamically based on cartMail
+	if (isLoggedIn) {
+		API_URL = `https://crudcrud.com/api/${API_ENDPOINT}/CartOf${cartMail
+			.split(/[@.]/)
+			.join('')}`;
+	}
+	//
 
 	const addCartItem = async (item) => {
 		// console.log(item);
@@ -63,7 +68,7 @@ export const CartProvider = ({ children }) => {
 	// Set Cart Sate on UserLogin OR Preserve cart State on refresh...
 	useEffect(() => {
 		const fetchCart = async () => {
-			if (API_URL) {
+			if (API_URL && isLoggedIn) {
 				try {
 					console.log('Fetching cart from:', API_URL); // Log the request URL
 					const getItemResponse = await axios.get(API_URL);
