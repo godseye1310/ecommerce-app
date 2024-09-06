@@ -1,11 +1,11 @@
 import React from 'react';
 import useCart from '../../store/cart-context';
 
-const CartItem = ({ title, price, imageUrl, quantity, id }) => {
+const CartItem = ({ title, price, imageUrl, quantity, _id }) => {
 	const { removeCartItem } = useCart();
 
 	const handleRemove = () => {
-		removeCartItem(id);
+		removeCartItem(_id);
 	};
 
 	return (

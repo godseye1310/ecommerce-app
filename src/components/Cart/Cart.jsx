@@ -46,6 +46,7 @@ const Cart = () => {
 										price={item.price}
 										imageUrl={item.imageUrl}
 										quantity={item.quantity}
+										_id={item._id}
 									/>
 								);
 							})}

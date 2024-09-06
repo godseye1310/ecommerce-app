@@ -1,35 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import useAuth from './auth-context';
 
 export const CartData = React.createContext();
 
-const API_URL = `https://crudcrud.com/api/5eec3042166040bb8ee9c66b768c7b63/cartgilmailcom`;
+const API_URL = `https://crudcrud.com/api/93ca5fd4824f4fc9a914cd4e9370c3a1/CartOfgilmailcom`;
 
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
 	const [total, setTotal] = useState(0);
-	// const [mail, setMail] = useState();
 
-	// const [cleanedEmail, setCleanedEmail] = useState('');
-	// const cleanMail = mail.replace(/[@.]/g, '');
-	// Remove '@' and '.'
+	const { isLoggedIn } = useAuth();
 
 	const addCartItem = async (item) => {
 		// console.log(item);
 		try {
 			const getItemResponse = await axios.get(API_URL);
 			// console.log(getItemResponse.statusText); ///
-
 			const updateItem = getItemResponse.data.find((data) => data.id === item.id);
 			// console.log(updateItem); ///
-
 			if (updateItem) {
+				// Update Item in Backend Using PUT {crud:curd}
 				const putItemResponse = await axios.put(`${API_URL}/${updateItem._id}`, {
 					...item,
 					quantity: updateItem.quantity + item.quantity,
 				});
-				console.log(putItemResponse.statusText, 'Item Update Success'); ///
-
+				console.log(putItemResponse.status, 'Item Update Success'); ///
+				// Update Cart State...
 				setCart((prevCart) => {
 					return prevCart.map((prevItem) => {
 						if (prevItem.id === updateItem.id) {
@@ -39,16 +36,15 @@ export const CartProvider = ({ children }) => {
 					});
 				});
 			} else {
+				// POST new item to Backend {crud:curd}
 				const postItemResponse = await axios.post(API_URL, item);
-				console.log(postItemResponse.data);
 				console.log(postItemResponse.status, 'Item POST Success');
-
+				// Update Cart State...
 				setCart([...cart, postItemResponse.data]);
 			}
 		} catch (error) {
 			console.log(error);
 		}
-
 		// setCart((prevCart) => {
 		// 	for (let preItem of prevCart) {
 		// 		if (preItem.id === item.id) {
@@ -58,16 +54,18 @@ export const CartProvider = ({ children }) => {
 		// 	}
 		// 	return [...prevCart, item];
 		// });
-		setTotal((prevTotal) => prevTotal + item.quantity * item.price);
+
+		setTotal((prevTotal) => prevTotal + item.quantity * item.price); //Set Total Amout of Order...
 	};
 
+	// Set Cart Sate on UserLogin OR Preserve cart State on refresh...
 	useEffect(() => {
 		const fetchCart = async () => {
 			try {
 				const getItemResponse = await axios.get(API_URL);
 				// console.log(getItemResponse.data);
 				setCart(getItemResponse.data);
-
+				// Calc. Total Amount...
 				setTotal(() => {
 					return getItemResponse.data.reduce((acc, curr) => {
 						return acc + curr.quantity * curr.price;
@@ -78,35 +76,31 @@ export const CartProvider = ({ children }) => {
 			}
 		};
 
-		if (true) {
+		if (isLoggedIn) {
 			fetchCart();
 		}
-	}, []);
+	}, [isLoggedIn]);
 
-	console.log(cart);
-	// console.log(total);
-	const removeCartItem = (id) => {
-		setCart((prevCart) => {
-			return prevCart.filter((item) => item.id !== id);
-		});
-		setTotal((prevTotal) => {
-			for (const item of cart) {
-				if (item.id === id) {
-					return prevTotal - item.quantity * item.price;
-				}
+	// console.log(cart);
+	const removeCartItem = async (id) => {
+		try {
+			const removeItemResponse = await axios.delete(`${API_URL}/${id}`);
+			console.log(removeItemResponse.status, 'Item Delete Success');
+			if (removeItemResponse.status === 200) {
+				setCart((prevCart) => {
+					return prevCart.filter((item) => item._id !== id);
+				});
+				setTotal((prevTotal) => {
+					for (const item of cart) {
+						if (item._id === id) {
+							return prevTotal - item.quantity * item.price;
+						}
+					}
+				});
 			}
-		});
-	};
-
-	const loginCartHandle = async () => {
-		// try {
-		// 	const response = await axios.get(`${API_URL}/gilmailcom`);
-		// 	console.log('Added', response.data);
-		// 	console.log(response.status, response.statusText, 'Fetch on Refresh Success');
-		// 	setCart(response.data);
-		// } catch (error) {
-		// 	console.log(error);
-		// }
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const cartctx = {
@@ -114,8 +108,6 @@ export const CartProvider = ({ children }) => {
 		removeCartItem,
 		cart,
 		total,
-		// setMail,
-		loginCartHandle,
 	};
 
 	return <CartData.Provider value={cartctx}>{children}</CartData.Provider>;

@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import useAuth from '../../store/auth-context';
 import { useNavigate } from 'react-router-dom';
-import useCart from '../../store/cart-context';
 
 const API_KEY = 'AIzaSyCXlSCfAbbr-m_HjkDJRm7dPXV0Sajc9xM';
 const SIGNUP_URL = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
@@ -14,7 +13,6 @@ const AuthForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const { login } = useAuth();
-	const { setMail, loginCartHandle } = useCart();
 
 	const navigateTo = useNavigate();
 
@@ -54,8 +52,6 @@ const AuthForm = () => {
 					const data = await response.json();
 					// console.log(data);
 					login(data.idToken);
-					setMail(data.email);
-					loginCartHandle();
 
 					emailInputRef.current.value = '';
 					passwordInputRef.current.value = '';
