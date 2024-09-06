@@ -4,13 +4,16 @@ import useAuth from './auth-context';
 
 export const CartData = React.createContext();
 
-const API_URL = `https://crudcrud.com/api/93ca5fd4824f4fc9a914cd4e9370c3a1/CartOfgilmailcom`;
-
+let API_URL = '';
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
 	const [total, setTotal] = useState(0);
 
-	const { isLoggedIn } = useAuth();
+	const { isLoggedIn, cartMail } = useAuth();
+
+	API_URL = `https://crudcrud.com/api/34801e6e01cb46088819402541f1afde/CartOf${cartMail
+		.split(/[@.]/)
+		.join('')}`;
 
 	const addCartItem = async (item) => {
 		// console.log(item);
@@ -28,12 +31,11 @@ export const CartProvider = ({ children }) => {
 				console.log(putItemResponse.status, 'Item Update Success'); ///
 				// Update Cart State...
 				setCart((prevCart) => {
-					return prevCart.map((prevItem) => {
-						if (prevItem.id === updateItem.id) {
-							return { ...prevItem, quantity: prevItem.quantity + item.quantity };
-						}
-						return prevItem;
-					});
+					return prevCart.map((prevItem) =>
+						prevItem.id === updateItem.id
+							? { ...prevItem, quantity: prevItem.quantity + item.quantity }
+							: prevItem
+					);
 				});
 			} else {
 				// POST new item to Backend {crud:curd}
@@ -61,18 +63,21 @@ export const CartProvider = ({ children }) => {
 	// Set Cart Sate on UserLogin OR Preserve cart State on refresh...
 	useEffect(() => {
 		const fetchCart = async () => {
-			try {
-				const getItemResponse = await axios.get(API_URL);
-				// console.log(getItemResponse.data);
-				setCart(getItemResponse.data);
-				// Calc. Total Amount...
-				setTotal(() => {
-					return getItemResponse.data.reduce((acc, curr) => {
-						return acc + curr.quantity * curr.price;
-					}, 0);
-				});
-			} catch (error) {
-				console.log(error);
+			if (API_URL) {
+				try {
+					console.log('Fetching cart from:', API_URL); // Log the request URL
+					const getItemResponse = await axios.get(API_URL);
+					// console.log(getItemResponse.data);
+					setCart(getItemResponse.data);
+					// Calc. Total Amount...
+					setTotal(() => {
+						return getItemResponse.data.reduce((acc, curr) => {
+							return acc + curr.quantity * curr.price;
+						}, 0);
+					});
+				} catch (error) {
+					console.log(error);
+				}
 			}
 		};
 

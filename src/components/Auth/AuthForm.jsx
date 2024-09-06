@@ -51,7 +51,7 @@ const AuthForm = () => {
 				if (response.ok) {
 					const data = await response.json();
 					// console.log(data);
-					login(data.idToken);
+					login(data.idToken, data.email);
 
 					emailInputRef.current.value = '';
 					passwordInputRef.current.value = '';
@@ -84,6 +84,7 @@ const AuthForm = () => {
 
 					emailInputRef.current.value = '';
 					passwordInputRef.current.value = '';
+					navigateTo('/products', { replace: true });
 					// ...
 				} else {
 					const data = await response.json();
