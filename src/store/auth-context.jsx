@@ -4,12 +4,16 @@ const AuthContext = React.createContext();
 
 export const AuthContextProvider = ({ children }) => {
 	const [token, setToken] = useState(localStorage.getItem('token') || null);
+	const [userMail, setUserMail] = useState(localStorage.getItem('userMail') || null);
 
 	const isLoggedIn = !!token;
 
-	const loginHandler = (token) => {
+	const loginHandler = (token, email) => {
 		setToken(token);
 		localStorage.setItem('token', token);
+
+		setUserMail(email);
+		localStorage.setItem('userMail', email);
 	};
 
 	const logoutHandler = () => {
@@ -23,6 +27,7 @@ export const AuthContextProvider = ({ children }) => {
 	const ContextValue = {
 		token,
 		isLoggedIn,
+		userMail,
 		login: loginHandler,
 		logout: logoutHandler,
 	};

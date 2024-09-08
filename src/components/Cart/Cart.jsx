@@ -12,6 +12,8 @@ const Cart = () => {
 		handleCartDisplay(false);
 	};
 
+	console.log(cart);
+
 	return (
 		<div
 			className={`bg-gray-900 min-w-[610px] text-white fixed top-[67px] right-0 h-full p-5 z-20 transition ease-linear duration-300 ${

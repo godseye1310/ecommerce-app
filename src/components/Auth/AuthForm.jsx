@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import useAuth from '../../store/auth-context';
 import { useNavigate } from 'react-router-dom';
-import useCart from '../../store/cart-context';
 
 const API_KEY = 'AIzaSyCXlSCfAbbr-m_HjkDJRm7dPXV0Sajc9xM';
 const SIGNUP_URL = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
@@ -14,8 +13,6 @@ const AuthForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const { login } = useAuth();
-	const { setMail, loginCartHandle } = useCart();
-
 	const navigateTo = useNavigate();
 
 	const switchAuthModeHandler = () => {
@@ -53,9 +50,7 @@ const AuthForm = () => {
 				if (response.ok) {
 					const data = await response.json();
 					// console.log(data);
-					login(data.idToken);
-					setMail(data.email);
-					loginCartHandle();
+					login(data.idToken, data.email);
 
 					emailInputRef.current.value = '';
 					passwordInputRef.current.value = '';
@@ -84,7 +79,7 @@ const AuthForm = () => {
 					console.log('Success:', response.status);
 					const data = await response.json();
 					console.log(data);
-					login(data.idToken);
+					login(data.idToken, data.email);
 
 					emailInputRef.current.value = '';
 					passwordInputRef.current.value = '';
@@ -161,11 +156,7 @@ const AuthForm = () => {
 						)}
 
 						{isLoading && (
-							<img
-								src="https://i.gifer.com/XDZT.gif"
-								alt="creating acc"
-								className="h-12 w-12"
-							/>
+							<img src="https://i.gifer.com/XDZT.gif" alt="creating acc" className="h-12 w-12" />
 						)}
 					</div>
 				</form>
