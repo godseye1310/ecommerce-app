@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const API_URL =
-	'https://ecommerce-userdata-default-rtdb.asia-southeast1.firebasedatabase.app/userData';
+	'https://ecommerce-userdata-default-rtdb.asia-southeast1.firebasedatabase.app/userContacts';
 
 const ContactForm = () => {
 	const [formData, setFormData] = useState({
@@ -32,21 +32,19 @@ const ContactForm = () => {
 					'Content-Type': 'application/json',
 				},
 			});
-			console.log(response.statusText);
+			console.log(response.status, response.statusText, 'Contact details received');
 			if (!response.ok) {
 				throw new Error(`Contact Failed. HTTP error! status: ${response.statusText}`);
 			}
-
 			//  to parse the response data. *Optional!! (NOT really Needed here in 'POST')
-			const data = await response.json();
-			console.log(data);
+			// const data = await response.json();
+			// console.log(data);
 
-			setFormData((prevFormData) => ({
-				...prevFormData,
+			setFormData({
 				name: '',
 				email: '',
 				phone: '',
-			}));
+			});
 		} catch (error) {
 			console.log('Error : ', error.message);
 		}
@@ -54,9 +52,7 @@ const ContactForm = () => {
 
 	return (
 		<section className="pb-20 pt-10 px-5 max-w-[900px] my-5 mx-auto text-lg flex justify-around items-baseline max-sm:flex-col max-sm:items-center ">
-			<h2 className="text-5xl font-bold mb-6 text-left capitalize p-5 font-serif">
-				Contact US
-			</h2>
+			<h2 className="text-5xl font-bold mb-6 text-left capitalize p-5 font-serif">Contact US</h2>
 			<form
 				onSubmit={handleSubmit}
 				className="w-full max-w-md p-8 bg-white shadow-md rounded-lg mx-5"
@@ -74,6 +70,7 @@ const ContactForm = () => {
 						className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
 						placeholder="Enter your name"
 						required
+						autoFocus
 					/>
 				</div>
 
