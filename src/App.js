@@ -42,16 +42,3 @@ function App() {
 }
 
 export default App;
-
-// {/* <>
-// 			<main className="relative min-h-svh">
-// 				<CartProvider>
-// 					<CartDisplayProvider>
-// 						<Header />
-// 						<Cart />
-// 					</CartDisplayProvider>
-// 					<Products />
-// 				</CartProvider>
-// 				<Footer />
-// 			</main>
-// 		</> */}

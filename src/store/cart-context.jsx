@@ -1,19 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 export const CartData = React.createContext();
 
-const API_URL = 'https://crudcrud.com/api/f2e5e17aa46b4f3e9353bee15071337e/cart';
+const API_URL = '';
 
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
 	const [total, setTotal] = useState(0);
 	const [mail, setMail] = useState();
-	// const [cleanedEmail, setCleanedEmail] = useState('');
-
-	// const cleanMail = mail.replace(/[@.]/g, '');
-
-	// Remove '@' and '.'
 
 	const addCartItem = async (item) => {
 		// console.log(item);
@@ -31,10 +26,10 @@ export const CartProvider = ({ children }) => {
 		console.log(cleanMail);
 
 		try {
-			const response = await axios.post(`${API_URL}${cleanMail}`, cart);
-			console.log(response.data);
+			// const response = await axios.post(`${API_URL}${cleanMail}`, cart);
+			// console.log(response.data);
 			// console.log(response.status, response.statusText, 'List POST Success');
-			setCart((prevCart) => [...prevCart, response.data]);
+			setCart((prevCart) => [...prevCart, item]);
 		} catch (error) {
 			console.log(error);
 		}
@@ -56,16 +51,18 @@ export const CartProvider = ({ children }) => {
 		});
 	};
 
-	const loginCartHandle = async () => {
-		try {
-			const response = await axios.get(`${API_URL}/gilmailcom`);
-			console.log('Added', response.data);
-			console.log(response.status, response.statusText, 'Fetch on Refresh Success');
-			setCart(response.data);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	useEffect(() => {});
+
+	// const loginCartHandle = async () => {
+	// 	try {
+	// 		const response = await axios.get(`${API_URL}/gilmailcom`);
+	// 		console.log('Added', response.data);
+	// 		console.log(response.status, response.statusText, 'Fetch on Refresh Success');
+	// 		setCart(response.data);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
 
 	const cartctx = {
 		addCartItem,
@@ -73,7 +70,6 @@ export const CartProvider = ({ children }) => {
 		cart,
 		total,
 		setMail,
-		loginCartHandle,
 	};
 
 	return <CartData.Provider value={cartctx}>{children}</CartData.Provider>;
