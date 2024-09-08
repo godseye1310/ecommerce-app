@@ -6,18 +6,17 @@ import { FaStar } from 'react-icons/fa6';
 
 const ProductInformation = ({ productData }) => {
 	const { productID } = useParams();
-	// console.log(productsArr);
-	const product = productData.find(
-		(item) => `cx${productData.indexOf(item)}ay` === productID
-	);
+	// console.log(productData);
+	// console.log(productID);
+	const product = productData.find((item) => `cx${productData.indexOf(item)}ay` === productID);
 	// console.log(product);
 
 	const { handleCartDisplay } = useCartDisplay();
 	const { addCartItem } = useCart();
 	const handleAddCart = () => {
 		const item = {
+			product_id: productID,
 			...product,
-			id: productID,
 			quantity: 1,
 		};
 		addCartItem(item);
@@ -73,8 +72,8 @@ const ProductInformation = ({ productData }) => {
 					<div className="mt-2 flex flex-col pt-6">
 						<h3 className="text-2xl font-semibold">Product Details</h3>
 						<p className="text-[#777] font-medium">
-							Color is a complex and multifaceted concept, with both physical and
-							psychological aspects.
+							Color is a complex and multifaceted concept, with both physical and psychological
+							aspects.
 						</p>
 
 						<table className="mt-5 p-2">

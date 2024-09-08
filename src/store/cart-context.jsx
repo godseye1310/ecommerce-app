@@ -8,10 +8,10 @@ const API_URL = '';
 export const CartProvider = ({ children }) => {
 	const [cart, setCart] = useState([]);
 	const [total, setTotal] = useState(0);
-	const [mail, setMail] = useState();
+	// const [mail, setMail] = useState();
 
 	const addCartItem = async (item) => {
-		// console.log(item);
+		console.log(item);
 		// setCart((prevCart) => {
 		// 	for (let preItem of prevCart) {
 		// 		if (preItem.id === item.id) {
@@ -22,8 +22,8 @@ export const CartProvider = ({ children }) => {
 		// 	return [...prevCart, item];
 		// });
 
-		const cleanMail = await mail.replace(/[@.]/g, '');
-		console.log(cleanMail);
+		// const cleanMail = await mail.replace(/[@.]/g, '');
+		// console.log(cleanMail);
 
 		try {
 			// const response = await axios.post(`${API_URL}${cleanMail}`, cart);
@@ -69,7 +69,7 @@ export const CartProvider = ({ children }) => {
 		removeCartItem,
 		cart,
 		total,
-		setMail,
+		// setMail,
 	};
 
 	return <CartData.Provider value={cartctx}>{children}</CartData.Provider>;

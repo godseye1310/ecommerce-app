@@ -2,12 +2,12 @@ import React from 'react';
 import useCart from '../../store/cart-context';
 import { Link } from 'react-router-dom';
 
-const ProductItem = ({ title, price, imageUrl, id }) => {
+const ProductItem = ({ title, price, imageUrl, product_id }) => {
 	const { addCartItem } = useCart();
 
 	const handleAddCart = () => {
 		const item = {
-			id: id,
+			product_id: product_id,
 			title: title,
 			price: +price,
 			imageUrl: imageUrl,
@@ -19,7 +19,7 @@ const ProductItem = ({ title, price, imageUrl, id }) => {
 
 	return (
 		<li className=" bg-black/25 rounded-sm mx-4 my-4 p-4">
-			<Link to={`/products/${id}`}>
+			<Link to={`/products/${product_id}`}>
 				<h3 className=" text-center font-bold text-2xl text-white/80 mb-4">{title}</h3>
 				<div className=" overflow-hidden">
 					<img

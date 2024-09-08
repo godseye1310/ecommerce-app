@@ -12,7 +12,7 @@ const ProductList = ({ productsArr }) => {
 					return (
 						<ProductItem
 							key={i}
-							id={`cx${i}ay`}
+							product_id={`cx${i}ay`}
 							title={item.title}
 							price={item.price}
 							imageUrl={item.imageUrl}
