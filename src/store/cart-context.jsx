@@ -20,17 +20,40 @@ export const CartProvider = ({ children }) => {
 	}
 
 	const addCartItem = async (item) => {
-		console.log(item);
+		// console.log(item);
+		// console.log(cart);
+		const updateItem = cart.find((data) => data.product_id === item.product_id);
+		// console.log(updateItem);
+
 		try {
-			const response = await axios.post(`${API_URL}/${cleanMail}.json?auth=${token}`, item);
-			// console.log(response);
-			console.log(response.status, response.statusText, 'Item POST Success');
-			// Update Cart State...
-			setCart((prevCart) => [...prevCart, { ...item, id: response.data.name }]);
+			if (!updateItem) {
+				// POST new item to Firebase rtdb
+				const response = await axios.post(`${API_URL}/${cleanMail}.json?auth=${token}`, item);
+				// console.log(response);
+				console.log(response.status, response.statusText, 'Item POST Success');
+				// Update Cart State...
+				setCart((prevCart) => [...prevCart, { ...item, id: response.data.name }]);
+			} else {
+				// Update Item quantity in Firebase rtdb Using PATCH
+				const response = await axios.patch(`${API_URL}/${cleanMail}/${updateItem.id}.json`, {
+					quantity: updateItem.quantity + item.quantity,
+				});
+				// console.log(response);
+				console.log(response.status, response.statusText, 'Item Update Success');
+				// Update Item quantity in Cart State...
+				setCart((prevCart) => {
+					return prevCart.map((prevItem) =>
+						prevItem.id === updateItem.id
+							? { ...prevItem, quantity: prevItem.quantity + item.quantity }
+							: prevItem
+					);
+				});
+			}
 		} catch (error) {
 			console.log(error);
 			console.log(error.message);
 		}
+
 		setTotal((prevTotal) => prevTotal + item.quantity * item.price);
 	};
 
