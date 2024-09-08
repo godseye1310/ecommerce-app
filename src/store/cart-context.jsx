@@ -40,11 +40,17 @@ export const CartProvider = ({ children }) => {
 			if (token && isLoggedIn) {
 				try {
 					const response = await axios.get(`${API_URL}/${cleanMail}.json?auth=${token}`);
+					console.log(response.status, response.statusText, 'Fetch userCart Success');
+
 					if (response.status === 200) {
-						const loggedInUserCart = Object.keys(response.data).map((key) => {
-							return { ...response.data[key], id: key.toString() };
-						});
-						console.log(loggedInUserCart);
+						// console.log(response.data); ////response data
+						let loggedInUserCart = [];
+						if (response.data) {
+							loggedInUserCart = Object.keys(response.data).map((key) => {
+								return { ...response.data[key], id: key.toString() };
+							});
+						}
+						// console.log(loggedInUserCart);
 						setCart(loggedInUserCart);
 						setTotal(() => {
 							return loggedInUserCart.reduce((acc, curr) => {
@@ -61,39 +67,34 @@ export const CartProvider = ({ children }) => {
 			fetchUserCart();
 		}
 	}, [isLoggedIn, token]);
-
 	// console.log(cart);
-	console.log(total);
-	const removeCartItem = (id) => {
-		setCart((prevCart) => {
-			return prevCart.filter((item) => item.id !== id);
-		});
-		setTotal((prevTotal) => {
-			for (const item of cart) {
-				if (item.id === id) {
-					return prevTotal - item.quantity * item.price;
-				}
+	// console.log(total);
+	const removeCartItem = async (id) => {
+		try {
+			const response = await axios.delete(`${API_URL}/${cleanMail}/${id}.json`);
+			console.log(response.status, response.statusText, 'Item Delete Success');
+			if (response.status === 200) {
+				setCart((prevCart) => {
+					return prevCart.filter((item) => item.id !== id);
+				});
+				setTotal((prevTotal) => {
+					for (const item of cart) {
+						if (item.id === id) {
+							return prevTotal - item.quantity * item.price;
+						}
+					}
+				});
 			}
-		});
+		} catch (error) {
+			console.log(error);
+		}
 	};
-
-	// const loginCartHandle = async () => {
-	// 	try {
-	// 		const response = await axios.get(`${API_URL}/gilmailcom`);
-	// 		console.log('Added', response.data);
-	// 		console.log(response.status, response.statusText, 'Fetch on Refresh Success');
-	// 		setCart(response.data);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
 
 	const cartctx = {
 		addCartItem,
 		removeCartItem,
 		cart,
 		total,
-		// setMail,
 	};
 
 	return <CartData.Provider value={cartctx}>{children}</CartData.Provider>;

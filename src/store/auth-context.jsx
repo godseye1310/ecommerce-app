@@ -19,10 +19,11 @@ export const AuthContextProvider = ({ children }) => {
 	const logoutHandler = () => {
 		setToken(null);
 		localStorage.removeItem('token');
+		localStorage.removeItem('userMail');
 	};
 	useEffect(() => {
 		localStorage.getItem('token');
-	});
+	}, []);
 
 	const ContextValue = {
 		token,
