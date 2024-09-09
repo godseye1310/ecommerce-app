@@ -1,33 +1,30 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import CartItem from './CartItem';
 import useCartDisplay from '../../store/cart-display-context';
 import useCart from '../../store/cart-context';
 
-const Cart = () => {
-	const { cartDisplay, handleCartDisplay } = useCartDisplay();
+const CartModal = ({ closeCart }) => {
+	const { cartDisplay } = useCartDisplay();
 
 	const { cart, total } = useCart();
 
-	const closeCart = () => {
-		handleCartDisplay(false);
-	};
-
 	return (
 		<div
-			className={`bg-gray-900 min-w-[610px] text-white fixed top-[67px] right-0 h-full p-5 z-20 transition ease-linear duration-300 ${
+			className={` bg-gray-900 min-w-[610px] box-border text-white fixed top-[75px] right-0 h-full overflow-y-auto px-5 z-30 transition ease-linear duration-300 ${
 				cartDisplay ? 'translate-x-0 scale-x-100' : 'translate-x-full scale-x-0'
-			} max-sm:min-w-full max-sm:p-1`}
+			} max-sm:min-w-full max-sm:p-1 cart-scrollbar`}
 		>
 			<h1 className="pb-4 pt-6 text-center font-bold text-4xl">CART</h1>
 			<button
 				type="button"
-				className=" mr-2 font-bold text-2xl bg-red-600 bg-opacity-50 hover:bg-opacity-85 px-3 py-1 rounded-md absolute top-3 right-2"
+				className=" mr-2 font-bold text-2xl bg-red-600 bg-opacity-50 hover:bg-opacity-85 px-3 py-1 rounded-md fixed top-3 right-2"
 				onClick={closeCart}
 			>
 				X
 			</button>
 			<div>
-				<div className="relative overflow-x-auto">
+				<div className="relative overflow-x-auto px-2">
 					<table className="w-full text-sm text-center text-white ">
 						<thead className="text-gray-400 uppercase bg-gray-700 ">
 							<tr>
@@ -61,7 +58,7 @@ const Cart = () => {
 				</span>
 			</div>
 
-			<div className="flex justify-center mt-6">
+			<div className="flex justify-center mt-6 pb-32">
 				<button
 					type="button"
 					className="py-2 px-5 font-semibold text-2xl bg-blue-600 rounded-md hover:bg-blue-900"
@@ -70,6 +67,54 @@ const Cart = () => {
 				</button>
 			</div>
 		</div>
+	);
+};
+
+// export default Cart;
+const Backdrop = ({ closeCart }) => {
+	return (
+		<div
+			className=" fixed top-[75px] left-0 w-full h-screen z-20 bg-black/60"
+			onClick={closeCart}
+		/>
+	);
+};
+
+const Cart = () => {
+	// Use ReactDOM.createPortal to render the Cart component into #cartOverlay
+	const { cartDisplay, handleCartDisplay } = useCartDisplay();
+
+	const closeCart = () => {
+		handleCartDisplay(false);
+	};
+
+	React.useEffect(() => {
+		// Disable scrolling on the body when the cart is displayed
+		if (cartDisplay) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+
+		// Clean up on component unmount
+		return () => {
+			document.body.style.overflow = '';
+		};
+	}, [cartDisplay]);
+
+	return (
+		<>
+			{cartDisplay &&
+				ReactDOM.createPortal(
+					<Backdrop closeCart={closeCart} />,
+					document.getElementById('cartOverlay')
+				)}
+
+			{ReactDOM.createPortal(
+				<CartModal closeCart={closeCart} />,
+				document.getElementById('cartOverlay')
+			)}
+		</>
 	);
 };
 
