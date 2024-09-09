@@ -4,10 +4,10 @@ import useCart from '../../store/cart-context';
 import useCartDisplay from '../../store/cart-display-context';
 
 const HeaderCartBtn = () => {
-	const { handleCartDisplay } = useCartDisplay();
+	const { setCartDisplay } = useCartDisplay();
 	const { cart } = useCart();
 	const showCart = () => {
-		handleCartDisplay(true);
+		setCartDisplay((prevDisplay) => !prevDisplay);
 	};
 
 	const totalItems = cart.reduce((acc, curr) => {

@@ -15,7 +15,7 @@ export const CartDisplayProvider = ({ children }) => {
 	// 	setCartDisplay(false);
 	// }, [location]);
 
-	const ctx = { handleCartDisplay, cartDisplay };
+	const ctx = { handleCartDisplay, cartDisplay, setCartDisplay };
 
 	return <Display.Provider value={ctx}>{children}</Display.Provider>;
 };
