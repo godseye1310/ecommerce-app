@@ -35,9 +35,12 @@ export const CartProvider = ({ children }) => {
 				setCart((prevCart) => [...prevCart, { ...item, id: response.data.name }]);
 			} else {
 				// Update Item quantity in Firebase rtdb Using PATCH
-				const response = await axios.patch(`${API_URL}/${cleanMail}/${updateItem.id}.json`, {
-					quantity: updateItem.quantity + item.quantity,
-				});
+				const response = await axios.patch(
+					`${API_URL}/${cleanMail}/${updateItem.id}.json?auth=${token}`,
+					{
+						quantity: updateItem.quantity + item.quantity,
+					}
+				);
 				// console.log(response);
 				console.log(response.status, response.statusText, 'Item Update Success');
 				// Update Item quantity in Cart State...
@@ -94,7 +97,7 @@ export const CartProvider = ({ children }) => {
 	// console.log(total);
 	const removeCartItem = async (id) => {
 		try {
-			const response = await axios.delete(`${API_URL}/${cleanMail}/${id}.json`);
+			const response = await axios.delete(`${API_URL}/${cleanMail}/${id}.json?auth=${token}`);
 			console.log(response.status, response.statusText, 'Item Delete Success');
 			if (response.status === 200) {
 				setCart((prevCart) => {
