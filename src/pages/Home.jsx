@@ -35,7 +35,7 @@ const tourData = [
 
 const Home = () => {
 	return (
-		<section className="pb-32 px-6 max-w-[900px] my-0 mx-auto text-lg max-sm:text-sm max-xs:text-xs">
+		<section className="pb-20 px-6 max-w-[900px] my-0 mx-auto text-lg max-sm:text-sm max-xs:text-xs">
 			<h2 className="text-5xl font-bold text-center capitalize p-5 font-serif">TOURS</h2>
 			<div>
 				{tourData.map((tour, i) => {

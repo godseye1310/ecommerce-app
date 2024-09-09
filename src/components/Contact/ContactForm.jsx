@@ -51,7 +51,7 @@ const ContactForm = () => {
 	};
 
 	return (
-		<section className="pb-20 pt-10 px-5 max-w-[900px] my-5 mx-auto text-lg flex justify-around items-baseline max-sm:flex-col max-sm:items-center ">
+		<section className="pb-12 pt-10 px-5 max-w-[900px] my-1 mx-auto text-lg flex justify-around items-baseline max-sm:flex-col max-sm:items-center ">
 			<h2 className="text-5xl font-bold mb-6 text-left capitalize p-5 font-serif">Contact US</h2>
 			<form
 				onSubmit={handleSubmit}

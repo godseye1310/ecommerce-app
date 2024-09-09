@@ -3,16 +3,16 @@ import React from 'react';
 const About = () => {
 	return (
 		<div>
-			<section id="about" className="pb-20 max-w-[900px] my-0 mx-auto text-lg">
+			<section id="about" className="max-w-[900px] my-0 mx-auto text-lg overflow-hidden p-2">
 				<h2 className="text-5xl font-bold text-center capitalize p-5 font-serif ">About</h2>
-				<div>
+				<div className="">
 					<img
 						src="images/Band Members.png"
 						alt="Band-Members"
-						className=" size-52 rounded-full mx-12 my-5 float-left"
+						className=" size-52 rounded-full mx-12 my-5 float-left max-sm:float-none max-sm:rounded-none max-sm:w-full max-sm:mx-auto max-sm:object-cover max-sm:h-auto"
 						loading="lazy"
 					/>
-					<p className=" m-5 text-[#777] ">
+					<p className=" m-5 text-[#777] max-xs:text-sm">
 						Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of sorrows, hates no
 						prosecutors will unfold in the enduring of which were born in it? Often leads smallest
 						mistake some pain main responsibilities are to stand for the right builder of pleasure,

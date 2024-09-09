@@ -7,19 +7,17 @@ import { CartDisplayProvider } from '../../store/cart-display-context';
 
 const RootLayout = () => {
 	return (
-		<>
-			<main className=" bg-gray-100 relative min-h-svh">
-				<CartProvider>
-					<CartDisplayProvider>
-						<Header />
-						<div className=" pb-6">
-							<Outlet />
-						</div>
-					</CartDisplayProvider>
-				</CartProvider>
-				<Footer />
-			</main>
-		</>
+		<main className=" bg-gray-100 w-full min-h-screen flex flex-col items-center">
+			<CartProvider>
+				<CartDisplayProvider>
+					<Header />
+					<div className=" relative w-full">
+						<Outlet />
+					</div>
+					<Footer />
+				</CartDisplayProvider>
+			</CartProvider>
+		</main>
 	);
 };
 

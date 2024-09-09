@@ -14,7 +14,7 @@ const Header = () => {
 
 	return (
 		<header className="bg-[dimgray] flex flex-col relative w-full">
-			<div className="  bg-black text-white p-4 flex w-full fixed top-0 z-10">
+			<div className="  bg-black text-white p-4 flex w-full h-[75px] fixed top-0 z-10">
 				<ul
 					className={` flex flex-1 justify-center items-center gap-10 pl-24 font-semibold max-md:justify-start max-md:pl-0 max-sm:text-sm max-sm:gap-6 max-xs:text-xs max-xs:gap-3 ${
 						location.pathname.startsWith('/products') ? '' : 'pr-24'
@@ -24,9 +24,7 @@ const Header = () => {
 						<NavLink
 							to="/home"
 							className={({ isActive }) =>
-								isActive
-									? 'underline underline-offset-2 text-yellow-600'
-									: 'hover:text-yellow-600'
+								isActive ? 'underline underline-offset-2 text-yellow-600' : 'hover:text-yellow-600'
 							}
 						>
 							HOME
@@ -50,9 +48,7 @@ const Header = () => {
 						<NavLink
 							to="/about"
 							className={({ isActive }) =>
-								isActive
-									? 'underline underline-offset-2 text-yellow-600'
-									: 'hover:text-yellow-600'
+								isActive ? 'underline underline-offset-2 text-yellow-600' : 'hover:text-yellow-600'
 							}
 						>
 							ABOUT
@@ -62,9 +58,7 @@ const Header = () => {
 						<NavLink
 							to="/contact"
 							className={({ isActive }) =>
-								isActive
-									? 'underline underline-offset-2 text-yellow-600'
-									: 'hover:text-yellow-600'
+								isActive ? 'underline underline-offset-2 text-yellow-600' : 'hover:text-yellow-600'
 							}
 						>
 							Contact Us
@@ -101,7 +95,7 @@ const Header = () => {
 				{location.pathname.startsWith('/products') && <HeaderCartBtn />}
 			</div>
 
-			<div className="pt-20 pb-8 flex flex-col items-center">
+			<div className="pt-24 pb-8 flex flex-col items-center">
 				<h1 className="text-6xl text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-red-500 max-xs:text-4xl">
 					The Generics
 				</h1>

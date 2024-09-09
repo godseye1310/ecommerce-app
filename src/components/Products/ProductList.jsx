@@ -3,7 +3,7 @@ import ProductItem from './ProductItem';
 
 const ProductList = ({ productsArr }) => {
 	return (
-		<div className=" mt-5 flex items-center flex-col mb-2 pb-20">
+		<div className=" mt-5 flex items-center flex-col mb-2 pb-20 w-full">
 			<h1 className="text-center text-5xl font-black bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 max-xs:text-3xl">
 				Colors
 			</h1>
