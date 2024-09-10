@@ -49,8 +49,11 @@ const AuthForm = () => {
 
 				if (response.ok) {
 					const data = await response.json();
-					// console.log(data);
-					login(data.idToken, data.email);
+					console.log(data);
+
+					const expirationTime = Date.now() + Number(data.expiresIn) * 1000;
+
+					login(data.idToken, data.email, expirationTime, data.refreshToken);
 
 					emailInputRef.current.value = '';
 					passwordInputRef.current.value = '';
