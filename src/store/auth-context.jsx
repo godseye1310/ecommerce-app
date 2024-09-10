@@ -19,6 +19,10 @@ export const AuthContextProvider = ({ children }) => {
 	const handletokenRefresh = useCallback(
 		async (refreshToken) => {
 			try {
+				// const currentRefreshToken = refreshToken || localStorage.getItem('refreshToken');
+				// if (!currentRefreshToken) {
+				// 	throw new Error('No refresh token found');
+				// }
 				const response = await axios.post(
 					'https://securetoken.googleapis.com/v1/token?key=AIzaSyCXlSCfAbbr-m_HjkDJRm7dPXV0Sajc9xM',
 					{
@@ -42,10 +46,13 @@ export const AuthContextProvider = ({ children }) => {
 
 				const newExpirationTime = Date.now() + Number(response.data.expiresIn) * 1000;
 
+				localStorage.setItem('sessionTime', newExpirationTime);
+
 				console.log(response);
+				const remainingTime = calcRemainningTime(newExpirationTime);
 
 				// Schedule next token refresh
-				logoutTimer = setTimeout(() => handletokenRefresh(tokenRefresh), 15000); // newExpirationTime - Date.now() - 360000 //Refresh 6 minutes before expiry
+				logoutTimer = setTimeout(() => handletokenRefresh(tokenRefresh), 15000); // remainingTime - 360000 //Refresh 6 minutes before expiry
 			} catch (error) {
 				console.log('Error refreshing token:', error);
 				logoutHandler(); // Optionally log the user out if refresh fails
@@ -67,9 +74,11 @@ export const AuthContextProvider = ({ children }) => {
 		setTokenRefresh(refreshToken);
 		localStorage.setItem('refreshToken', refreshToken);
 
+		localStorage.setItem('sessionTime', expirationTime.toString());
+
 		// Calculate the time until token expires
-		const loginExpireDuration = calcRemainningTime(expirationTime);
-		logoutTimer = setTimeout(() => handletokenRefresh(refreshToken), 15000); //loginExpireDuration - 36000
+		const remainingTime = calcRemainningTime(expirationTime);
+		logoutTimer = setTimeout(() => handletokenRefresh(refreshToken), 15000); //remainingTime - 360000
 	};
 
 	const logoutHandler = () => {
