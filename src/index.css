@@ -29,13 +29,38 @@ body {
 	overflow-x: hidden;
 }
 body::-webkit-scrollbar {
-	width: 10px;
+	width: 16px;
 }
 body::-webkit-scrollbar-thumb {
-	background-color: #14233b; /* Scrollbar thumb color */
+	@apply bg-[#111827]; /* Scrollbar thumb color */
 }
 body::-webkit-scrollbar-track {
 	background: gray; /* Track background color */
+	position: relative;
+}
+
+/* Top button */
+body::-webkit-scrollbar-button:single-button:vertical:decrement {
+	background-color: #4a5568;
+	height: 16px;
+}
+/* Bottom button */
+/* body::-webkit-scrollbar-button:single-button:vertical:increment {
+	background-color: #4a5568;
+	height: 16px;
+} */
+/* Custom arrows as background */
+body::-webkit-scrollbar-button:single-button:vertical:decrement {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgNy4yNDNsNS00Ljg5IDUgNC44OUExIDEgMCAxIDExIDYuNzU0TDYgMi4zNzRsLTUgNC44ODZBMSAxIDAgMCAxIDEgNy4yNDN6IiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg=='); /* Up Arrow */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 8px 8px;
+}
+body::-webkit-scrollbar-button:single-button:vertical:increment {
+	position: relative;
+	width: 16px; /* Adjust as needed */
+	height: 16px; /* Adjust as needed */
+	background-color: #4a5568; /* Background color if needed */
 }
 
 * {
@@ -52,5 +77,15 @@ body::-webkit-scrollbar-track {
 	border-radius: 10px; /* rounded corners */
 }
 .cart-scrollbar::-webkit-scrollbar-thumb:hover {
+	background-color: darkgray; /* Darker on hover */
+}
+
+.cartList-scrollbar::-webkit-scrollbar {
+	width: 5px;
+}
+.cartList-scrollbar::-webkit-scrollbar-thumb {
+	@apply bg-sky-700 rounded-xl;
+}
+.cartList-scrollbar::-webkit-scrollbar-thumb:hover {
 	background-color: darkgray; /* Darker on hover */
 }

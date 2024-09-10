@@ -11,9 +11,9 @@ const CartModal = ({ closeCart }) => {
 
 	return (
 		<div
-			className={` bg-gray-900 min-w-[610px] box-border text-white fixed top-[75px] right-0 h-full overflow-y-auto px-5 z-30 transition ease-linear duration-300 ${
+			className={` bg-gray-900 min-w-[610px] text-white fixed top-[75px] right-0 h-full overflow-y-auto flex flex-col items-stretch px-5 z-30 transition ease-linear duration-300 ${
 				cartDisplay ? 'translate-x-0 scale-x-100' : 'translate-x-full scale-x-0'
-			} max-sm:min-w-full max-sm:p-1 cart-scrollbar`}
+			} max-sm:min-w-full max-sm:px-2 cart-scrollbar`}
 		>
 			<h1 className="pb-4 pt-6 text-center font-bold text-4xl">CART</h1>
 			<button
@@ -23,17 +23,24 @@ const CartModal = ({ closeCart }) => {
 			>
 				X
 			</button>
-			<div>
-				<div className="relative overflow-x-auto px-2">
-					<table className="w-full text-sm text-center text-white ">
-						<thead className="text-gray-400 uppercase bg-gray-700 ">
-							<tr>
-								<th className="px-8 py-3 max-sm:px-2 text-left">Items</th>
-								<th className="px-6 py-3 max-sm:px-2">Price</th>
-								<th className="px-6 py-3 max-sm:px-2">Quantity</th>
+
+			<div className="rounded-lg h-full overflow-hidden pb-4">
+				<div className="relative">
+					<table className="w-full table-auto">
+						<thead className="text-gray-400 text-sm text-left uppercase bg-gray-700 sticky top-0 z-10">
+							<tr className=" w-[100%]">
+								<th className="pl-1 py-4 w-[18%]"></th>
+								<th className="px-1 py-4 w-[28%] ">Product</th>
+								<th className="px-1 py-4 w-[18%]">Price</th>
+								<th className="px-1 py-4 w-[18%]">Qty</th>
+								<th className="pr-1 py-4 w-[18%]"></th>
 							</tr>
 						</thead>
-						<tbody>
+					</table>
+				</div>
+				<div className="overflow-y-auto rounded-b-lg max-h-[90%] cartList-scrollbar">
+					<table className="w-full text-sm text-left text-white/80 ">
+						<tbody className="w-full font-semibold max-xs:font-medium">
 							{cart.map((item) => {
 								return (
 									<CartItem
@@ -51,17 +58,17 @@ const CartModal = ({ closeCart }) => {
 				</div>
 			</div>
 
-			<div className="flex justify-end max-sm:justify-around text-2xl mx-5 my-2 py-4 border-t-2 border-gray-600">
+			<div className="w-full text-right text-2xl my-2 py-4 border-t-2 border-gray-600">
 				<span className="mr-5 font-bold">Total</span>
 				<span className="ml-5">
 					$<span>{total}</span>
 				</span>
 			</div>
 
-			<div className="flex justify-center mt-6 pb-32">
+			<div className="flex justify-center self-end mt-auto pb-28">
 				<button
 					type="button"
-					className="py-2 px-5 font-semibold text-2xl bg-blue-600 rounded-md hover:bg-blue-900"
+					className="py-2 px-5 font-semibold text-2xl max-xs:text-xl bg-blue-900 rounded-md hover:bg-sky-700"
 				>
 					PURCHASE
 				</button>

@@ -9,23 +9,26 @@ const CartItem = ({ title, price, imageUrl, quantity, id }) => {
 	};
 
 	return (
-		<tr className="font-bold box-content odd:bg-green-300 odd:bg-opacity-15 even:bg-sky-500 even:bg-opacity-10 ">
-			<td className="px-6 py-4 font-medium whitespace-nowrap flex items-center gap-2 max-sm:px-1 text-wrap text-left">
-				<span>
-					<img className="size-20 rounded-lg max-sm:size-10" src={imageUrl} alt="product img" />
-				</span>
-				<span>{title}</span>
+		<tr className=" odd:bg-green-300 odd:bg-opacity-15 even:bg-sky-500 even:bg-opacity-10 ">
+			<td className="pl-1 py-3 whitespace-nowrap w-[18%]">
+				<img
+					className="size-20 rounded-lg object-cover max-xs:w-12 max-xs:h-auto"
+					src={imageUrl}
+					alt={title}
+				/>
 			</td>
-			<td className="px-6 py-4 max-sm:px-2">{price}</td>
-
-			<td className="px-6 py-4 max-sm:px-1">
-				<span className="border border-yellow-500 py-2 px-3 rounded-md max-sm:py-1 max-sm:px-2 max-sm:text-xs">
+			<td className="px-1 py-3 text-wrap whitespace-nowrap w-[28%]">{title}</td>
+			<td className="px-2 py-3 whitespace-nowrap w-[18%]">${price}</td>
+			<td className="px-1 py-3 whitespace-nowrap w-[16%]">
+				<span className="border-2 border-gray-500 bg-white/15 py-2 px-3 rounded-md max-sm:py-1 max-sm:px-2 max-sm:text-xs leading-none ">
 					{quantity}
 				</span>
+			</td>
+			<td className="pr-1 py-3 whitespace-nowrap w-[20%]">
 				<button
 					type="button"
 					onClick={handleRemove}
-					className=" bg-red-500 bg-opacity-60 hover:bg-opacity-90 px-4 py-2 ml-1 rounded-md max-sm:py-1 max-sm:px-1 max-sm:text-xs"
+					className=" text-white/90 bg-red-500 bg-opacity-40 hover:bg-opacity-70 px-3 py-2 ml-1 rounded-md  max-sm:text-xs"
 				>
 					Remove
 				</button>
