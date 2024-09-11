@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
 
 	const { isLoggedIn, token, userMail } = useAuth();
 
-	if (isLoggedIn) {
+	if (isLoggedIn && userMail) {
 		cleanMail = `cartOf${userMail.split(/[@.]/).join('')}`;
 	}
 
@@ -63,8 +63,9 @@ export const CartProvider = ({ children }) => {
 	// Set Cart Sate on UserLogin OR Preserve cart State on refresh...
 	useEffect(() => {
 		const fetchUserCart = async () => {
-			if (token && isLoggedIn) {
+			if (token && isLoggedIn && userMail) {
 				try {
+					cleanMail = `cartOf${userMail.split(/[@.]/).join('')}`;
 					const response = await axios.get(`${API_URL}/${cleanMail}.json?auth=${token}`);
 					console.log(response.status, response.statusText, 'Fetch userCart Success');
 
@@ -92,7 +93,7 @@ export const CartProvider = ({ children }) => {
 		if (isLoggedIn) {
 			fetchUserCart();
 		}
-	}, [isLoggedIn, token]);
+	}, [isLoggedIn, token, userMail]);
 	// console.log(cart);
 	// console.log(total);
 	const removeCartItem = async (id) => {

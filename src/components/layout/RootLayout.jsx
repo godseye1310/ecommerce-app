@@ -7,7 +7,7 @@ import { CartDisplayProvider } from '../../store/cart-display-context';
 
 const RootLayout = () => {
 	return (
-		<main className=" bg-gray-100 w-full min-h-screen flex flex-col items-center">
+		<main className=" bg-black/15 w-full min-h-screen flex flex-col items-center">
 			<CartProvider>
 				<CartDisplayProvider>
 					<Header />

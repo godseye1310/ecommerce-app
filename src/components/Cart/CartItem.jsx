@@ -1,5 +1,6 @@
 import React from 'react';
 import useCart from '../../store/cart-context';
+import { MdDeleteForever } from 'react-icons/md';
 
 const CartItem = ({ title, price, imageUrl, quantity, id }) => {
 	const { removeCartItem } = useCart();
@@ -9,10 +10,10 @@ const CartItem = ({ title, price, imageUrl, quantity, id }) => {
 	};
 
 	return (
-		<tr className=" odd:bg-green-300 odd:bg-opacity-15 even:bg-sky-500 even:bg-opacity-10 ">
-			<td className="pl-1 py-3 whitespace-nowrap w-[18%]">
+		<tr className=" odd:bg-teal-500 odd:bg-opacity-15 even:bg-cyan-500 even:bg-opacity-10 ">
+			<td className="pl-1 py-3 whitespace-nowrap w-[20%]">
 				<img
-					className="size-20 rounded-lg object-cover max-xs:w-12 max-xs:h-auto"
+					className="size-24 rounded-lg object-cover max-xs:size-16"
 					src={imageUrl}
 					alt={title}
 				/>
@@ -24,13 +25,13 @@ const CartItem = ({ title, price, imageUrl, quantity, id }) => {
 					{quantity}
 				</span>
 			</td>
-			<td className="pr-1 py-3 whitespace-nowrap w-[20%]">
+			<td className="pr-1 py-3 whitespace-nowrap w-[10%]">
 				<button
 					type="button"
 					onClick={handleRemove}
-					className=" text-white/90 bg-red-500 bg-opacity-40 hover:bg-opacity-70 px-3 py-2 ml-1 rounded-md  max-sm:text-xs"
+					className=" text-white/90 bg-red-500 bg-opacity-40 hover:bg-opacity-70 ml-1 rounded-md p-1  max-sm:text-xs"
 				>
-					Remove
+					<MdDeleteForever className="size-7 max-xs:size-5" />
 				</button>
 			</td>
 		</tr>

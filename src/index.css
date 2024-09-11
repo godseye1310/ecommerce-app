@@ -35,32 +35,25 @@ body::-webkit-scrollbar-thumb {
 	@apply bg-[#111827]; /* Scrollbar thumb color */
 }
 body::-webkit-scrollbar-track {
-	background: gray; /* Track background color */
-	position: relative;
+	@apply relative bg-black/30;
 }
 
+/* Custom arrows as background */
 /* Top button */
 body::-webkit-scrollbar-button:single-button:vertical:decrement {
-	background-color: #4a5568;
-	height: 16px;
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBkPSJNMTIgOGwtOCA4aDE2bC04LTh6Ii8+Cjwvc3ZnPg=='); /* Up Arrow */
+	background-position: center;
+	background-size: 14px 14px;
+	height: 18px;
+	@apply hover:bg-gray-400 bg-gray-300;
 }
 /* Bottom button */
-/* body::-webkit-scrollbar-button:single-button:vertical:increment {
-	background-color: #4a5568;
-	height: 16px;
-} */
-/* Custom arrows as background */
-body::-webkit-scrollbar-button:single-button:vertical:decrement {
-	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgNy4yNDNsNS00Ljg5IDUgNC44OUExIDEgMCAxIDExIDYuNzU0TDYgMi4zNzRsLTUgNC44ODZBMSAxIDAgMCAxIDEgNy4yNDN6IiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg=='); /* Up Arrow */
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 8px 8px;
-}
 body::-webkit-scrollbar-button:single-button:vertical:increment {
-	position: relative;
-	width: 16px; /* Adjust as needed */
-	height: 16px; /* Adjust as needed */
-	background-color: #4a5568; /* Background color if needed */
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICA8cGF0aCBkPSJNMTIgMTZsOC04SDR6Ii8+Cjwvc3ZnPg==');
+	background-position: center;
+	background-size: 14px 14px;
+	height: 18px;
+	@apply hover:bg-gray-400 bg-gray-300;
 }
 
 * {
@@ -88,4 +81,8 @@ body::-webkit-scrollbar-button:single-button:vertical:increment {
 }
 .cartList-scrollbar::-webkit-scrollbar-thumb:hover {
 	background-color: darkgray; /* Darker on hover */
+}
+
+.last-tr-td-padding > tr:last-child > td {
+	padding-bottom: 25px;
 }

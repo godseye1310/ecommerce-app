@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import CartItem from './CartItem';
 import useCartDisplay from '../../store/cart-display-context';
 import useCart from '../../store/cart-context';
+import { IoClose } from 'react-icons/io5';
 
 const CartModal = ({ closeCart }) => {
 	const { cartDisplay } = useCartDisplay();
@@ -18,10 +19,10 @@ const CartModal = ({ closeCart }) => {
 			<h1 className="pb-4 pt-6 text-center font-bold text-4xl">CART</h1>
 			<button
 				type="button"
-				className=" mr-2 font-bold text-2xl bg-red-600 bg-opacity-50 hover:bg-opacity-85 px-3 py-1 rounded-md fixed top-3 right-2"
+				className=" mr-2 font-bold text-2xl bg-red-600 bg-opacity-50 hover:bg-opacity-85 px-0 py-0 rounded-md fixed top-3 right-3"
 				onClick={closeCart}
 			>
-				X
+				<IoClose className="size-10 transition duration-200 hover:rotate-90" />
 			</button>
 
 			<div className="rounded-lg h-full overflow-hidden pb-4">
@@ -29,18 +30,23 @@ const CartModal = ({ closeCart }) => {
 					<table className="w-full table-auto">
 						<thead className="text-gray-400 text-sm text-left uppercase bg-gray-700 sticky top-0 z-10">
 							<tr className=" w-[100%]">
-								<th className="pl-1 py-4 w-[18%]"></th>
+								<th className="pl-1 py-4 w-[20%]"></th>
 								<th className="px-1 py-4 w-[28%] ">Product</th>
 								<th className="px-1 py-4 w-[18%]">Price</th>
 								<th className="px-1 py-4 w-[18%]">Qty</th>
-								<th className="pr-1 py-4 w-[18%]"></th>
+								<th className="pr-1 py-4 w-[8%]"></th>
 							</tr>
 						</thead>
 					</table>
 				</div>
+				{!cart.length && (
+					<div className=" text-center text-white/75 bg-gray-400 bg-opacity-30 mx-4 my-10 rounded-md p-5 font-semibold transition ease-out duration-500">
+						Your Cart is currently Empty "_"
+					</div>
+				)}
 				<div className="overflow-y-auto rounded-b-lg max-h-[90%] cartList-scrollbar">
 					<table className="w-full text-sm text-left text-white/80 ">
-						<tbody className="w-full font-semibold max-xs:font-medium">
+						<tbody className="w-full font-semibold max-xs:font-medium last-tr-td-padding">
 							{cart.map((item) => {
 								return (
 									<CartItem

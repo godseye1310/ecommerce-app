@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import HeaderCartBtn from '../Cart/HeaderCartBtn';
 import useAuth from '../../store/auth-context';
+import { FcMusic } from 'react-icons/fc';
 
 const Header = () => {
 	const location = useLocation();
@@ -96,8 +97,11 @@ const Header = () => {
 			</div>
 
 			<div className="pt-24 pb-8 flex flex-col items-center">
-				<h1 className="text-6xl text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-red-500 max-xs:text-4xl">
+				<h1 className="text-6xl text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-red-500 max-xs:text-4xl flex items-center">
 					The Generics
+					<span>
+						<FcMusic />
+					</span>
 				</h1>
 
 				{location.pathname === '/home' && (
