@@ -10,7 +10,7 @@ const CartItem = ({ title, price, imageUrl, quantity, id }) => {
 	};
 
 	return (
-		<tr className=" odd:bg-green-300 odd:bg-opacity-15 even:bg-sky-500 even:bg-opacity-10 ">
+		<tr className=" odd:bg-teal-500 odd:bg-opacity-15 even:bg-cyan-500 even:bg-opacity-10 ">
 			<td className="pl-1 py-3 whitespace-nowrap w-[20%]">
 				<img
 					className="size-24 rounded-lg object-cover max-xs:size-16"

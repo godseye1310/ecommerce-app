@@ -39,6 +39,11 @@ const CartModal = ({ closeCart }) => {
 						</thead>
 					</table>
 				</div>
+				{!cart.length && (
+					<div className=" text-center text-white/75 bg-gray-400 bg-opacity-30 mx-4 my-10 rounded-md p-5 font-semibold transition ease-out duration-500">
+						Your Cart is currently Empty "_"
+					</div>
+				)}
 				<div className="overflow-y-auto rounded-b-lg max-h-[90%] cartList-scrollbar">
 					<table className="w-full text-sm text-left text-white/80 ">
 						<tbody className="w-full font-semibold max-xs:font-medium last-tr-td-padding">
