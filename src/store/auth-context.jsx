@@ -14,7 +14,7 @@ let logoutTimer;
 export const AuthContextProvider = ({ children }) => {
 	const [token, setToken] = useState(localStorage.getItem('token') || null);
 	const [userMail, setUserMail] = useState(localStorage.getItem('userMail') || null);
-	const [tokenRefresh, setTokenRefresh] = useState(localStorage.getItem('refreshToken') || null);
+	// const [tokenRefresh, setTokenRefresh] = useState(localStorage.getItem('refreshToken') || null);
 
 	const isLoggedIn = !!token;
 
@@ -32,34 +32,29 @@ export const AuthContextProvider = ({ children }) => {
 					},
 				}
 			);
+			console.log(response.data);
 			const newToken = response.data.id_token;
 			const newRefreshToken = response.data.refresh_token;
-			// const newExpirationTime = Date.now() + Number(response.data.expiresIn) * 1000;
-			const newExpirationTime = Date.now() + 30 * 1000; //remove after testing
-			const remainingTime = calcRemainingTime(newExpirationTime);
-
-			console.log(response.data);
-			console.log('Token refreshed successfully:');
-			// console.log(`New expiration time: ${newExpirationTime}`);
-			console.log(`Next refresh scheduled in: ${(remainingTime - 15000) / 1000}sec`);
+			const newExpirationTime = Date.now() + Number(response.data.expires_in) * 1000;
+			// const newExpirationTime = Date.now() + 30 * 1000; //remove after testing
+			const neWremainingTime = calcRemainingTime(+newExpirationTime);
+			console.log(`Next refresh scheduled in: ${(neWremainingTime - 15000) / 1000}sec`);
+			console.log('handletokenRefresh', typeof neWremainingTime);
 
 			// Update local storage with new token, refresh token, and session expiration time
 			setToken(newToken);
 			localStorage.setItem('token', newToken);
-
 			// setTokenRefresh(newRefreshToken); //maybe this line is not needed. Confirmed Not needed.
 			localStorage.setItem('refreshToken', newRefreshToken);
-
-			localStorage.setItem('sessionTime', newExpirationTime);
+			localStorage.setItem('sessionTime', newExpirationTime.toString());
 
 			// Make sure the userMail is still intact, if missing, log the user out
 			if (!localStorage.getItem('userMail')) {
 				logoutHandler();
 				return;
 			}
-
 			// Schedule next token refresh
-			logoutTimer = setTimeout(() => handletokenRefresh(newRefreshToken), remainingTime - 15000);
+			logoutTimer = setTimeout(() => handletokenRefresh(newRefreshToken), neWremainingTime - 15000);
 		} catch (error) {
 			console.log('Error refreshing token:', error);
 			// Optionally log the user out if refresh fails
@@ -74,23 +69,17 @@ export const AuthContextProvider = ({ children }) => {
 
 		setUserMail(email);
 		localStorage.setItem('userMail', email);
-		console.log('User mail set during login:', email);
 
-		setTokenRefresh(refresh_token); //!maybe this line is not needed. Nope this line is a MUST.
+		// setTokenRefresh(refresh_token); //!maybe this line is not needed. Nope this line is a MUST. not really lol
 		localStorage.setItem('refreshToken', refresh_token);
-
-		expirationTime = Date.now() + 30 * 1000; //remove after testing
-
+		// expirationTime = Date.now() + 30 * 1000; //remove after testing
 		localStorage.setItem('sessionTime', expirationTime.toString());
-		// console.log(expirationTime);
 
 		// Calculate the time until token expires
 		const remainingTime = calcRemainingTime(expirationTime);
 		console.log(`User logged in. Token will expire in: ${remainingTime / 1000}sec`);
 		console.log(
-			`Refresh token scheduled for: ${
-				(remainingTime - 15000) / 1000
-			}sec (15 seconds before expiration)`
+			`Refresh token scheduled for: ${(remainingTime - 15000) / 1000}sec (15sec before expiration)`
 		);
 
 		if (remainingTime > 0) {
@@ -105,7 +94,7 @@ export const AuthContextProvider = ({ children }) => {
 
 		setToken(null);
 		setUserMail(null);
-		setTokenRefresh(null);
+		// setTokenRefresh(null);
 		localStorage.removeItem('token');
 		localStorage.removeItem('userMail');
 		localStorage.removeItem('refreshToken');
@@ -119,20 +108,27 @@ export const AuthContextProvider = ({ children }) => {
 	// On initial load or page refresh
 	useEffect(() => {
 		const storedExpirationTime = localStorage.getItem('sessionTime');
+		const storedRefreshToken = localStorage.getItem('refreshToken');
 		if (storedExpirationTime && isLoggedIn) {
 			const remainingTime = calcRemainingTime(Number(storedExpirationTime));
 			console.log(`Time remaining for token: ${remainingTime / 1000}sec`);
 
-			if (remainingTime <= 0) {
+			if (remainingTime > 0) {
+				// Token is valid, schedule the refresh
+				// Avoid multiple timeouts
+				if (!logoutTimer) {
+					logoutTimer = setTimeout(
+						() => handletokenRefresh(storedRefreshToken),
+						remainingTime - 15000
+					);
+				}
+			} else {
 				// Expired, log out
 				logoutHandler();
 				console.log('Token expired on page load, logging out...');
-			} else {
-				// Token is valid, schedule the refresh
-				logoutTimer = setTimeout(() => handletokenRefresh(tokenRefresh), remainingTime - 15000);
 			}
 		}
-	}, [handletokenRefresh, tokenRefresh, isLoggedIn]);
+	}, [handletokenRefresh, isLoggedIn]);
 
 	const ContextValue = {
 		token,

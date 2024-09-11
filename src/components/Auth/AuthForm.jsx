@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import useAuth from '../../store/auth-context';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ const AuthForm = () => {
 	const passwordInputRef = useRef();
 	const [isLogin, setIsLogin] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
+	const [err, setErr] = useState(false);
 
 	const { login } = useAuth();
 	const navigateTo = useNavigate();
@@ -50,7 +51,6 @@ const AuthForm = () => {
 				if (response.ok) {
 					const data = await response.json();
 					// console.log(data);
-
 					const expirationTime = Date.now() + Number(data.expiresIn) * 1000;
 
 					login(data.idToken, data.email, expirationTime, data.refreshToken);
@@ -98,22 +98,40 @@ const AuthForm = () => {
 					alert(errorMessage);
 				}
 			}
+			setIsLoading(false);
 		} catch (error) {
 			// console.error('Something went wrong:', error.message);
-			alert(error.message);
+			// alert(error.message);
+			setIsLoading(false);
+			setErr(true);
 		}
 	};
+
+	useEffect(() => {
+		if (err) {
+			setTimeout(() => setErr(false), 3000);
+		}
+	}, [err]);
 
 	return (
 		<section className="flex items-center justify-center min-h-full py-20 px-5 ">
 			<div className="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-lg flex flex-col">
 				<h2 className="text-4xl font-bold text-center text-gray-600">
-					{' '}
 					{isLogin ? 'Login' : 'Sign Up'}
 				</h2>
 
-				<form onSubmit={LogInHandler} className="space-y-6 font-semibold text-lg ">
+				<span
+					className={`text-red-400 text-sm font-semibold transition duration-300 ease-in-out mb-4 block ${
+						err ? 'scale-100' : ' scale-0'
+					}`}
+				>
+					<span>{err ? 'Invalid Login Credentials' : ''}</span>
+					<span>{!err && isLoading ? 'longin success' : ''}</span>
+				</span>
+
+				<form onSubmit={LogInHandler} className="space-y-6 font-semibold text-lg">
 					{/* Email Input */}
+
 					<div>
 						<label htmlFor="email" className="block text-base font-medium text-gray-700">
 							Email Address
@@ -132,7 +150,7 @@ const AuthForm = () => {
 
 					{/* Password Input */}
 					<div>
-						<label htmlFor="password" className="block text-sm font-medium text-gray-700">
+						<label htmlFor="password" className="block text-base font-medium text-gray-700">
 							Password
 						</label>
 						<input
@@ -152,14 +170,18 @@ const AuthForm = () => {
 						{!isLoading && (
 							<button
 								type="submit"
-								className="w-full px-4 py-2 text-base  font-semibold text-white bg-sky-500 border border-transparent rounded-md shadow-sm hover:bg-blue-500 focus:outline-none"
+								className="w-full px-4 py-2 text-base  font-semibold text-white bg-sky-500 border border-transparent rounded-md shadow-sm hover:bg-blue-500 focus:outline-none transition translate-x-0 ease-in-out duration-75"
 							>
 								{isLogin ? 'Login' : 'Sign Up'}
 							</button>
 						)}
 
 						{isLoading && (
-							<img src="https://i.gifer.com/XDZT.gif" alt="creating acc" className="h-12 w-12" />
+							<img
+								src="https://i.gifer.com/XOsX.gif"
+								alt="creating acc"
+								className="size-12 transition ease-in-out duration-75"
+							/>
 						)}
 					</div>
 				</form>

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import CartItem from './CartItem';
 import useCartDisplay from '../../store/cart-display-context';
 import useCart from '../../store/cart-context';
+import { IoClose } from 'react-icons/io5';
 
 const CartModal = ({ closeCart }) => {
 	const { cartDisplay } = useCartDisplay();
@@ -18,10 +19,10 @@ const CartModal = ({ closeCart }) => {
 			<h1 className="pb-4 pt-6 text-center font-bold text-4xl">CART</h1>
 			<button
 				type="button"
-				className=" mr-2 font-bold text-2xl bg-red-600 bg-opacity-50 hover:bg-opacity-85 px-3 py-1 rounded-md fixed top-3 right-2"
+				className=" mr-2 font-bold text-2xl bg-red-600 bg-opacity-50 hover:bg-opacity-85 px-0 py-0 rounded-md fixed top-3 right-3"
 				onClick={closeCart}
 			>
-				X
+				<IoClose className="size-10 transition duration-200 hover:rotate-90" />
 			</button>
 
 			<div className="rounded-lg h-full overflow-hidden pb-4">
