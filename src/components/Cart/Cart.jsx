@@ -30,18 +30,18 @@ const CartModal = ({ closeCart }) => {
 					<table className="w-full table-auto">
 						<thead className="text-gray-400 text-sm text-left uppercase bg-gray-700 sticky top-0 z-10">
 							<tr className=" w-[100%]">
-								<th className="pl-1 py-4 w-[18%]"></th>
+								<th className="pl-1 py-4 w-[20%]"></th>
 								<th className="px-1 py-4 w-[28%] ">Product</th>
 								<th className="px-1 py-4 w-[18%]">Price</th>
 								<th className="px-1 py-4 w-[18%]">Qty</th>
-								<th className="pr-1 py-4 w-[18%]"></th>
+								<th className="pr-1 py-4 w-[8%]"></th>
 							</tr>
 						</thead>
 					</table>
 				</div>
 				<div className="overflow-y-auto rounded-b-lg max-h-[90%] cartList-scrollbar">
 					<table className="w-full text-sm text-left text-white/80 ">
-						<tbody className="w-full font-semibold max-xs:font-medium">
+						<tbody className="w-full font-semibold max-xs:font-medium last-tr-td-padding">
 							{cart.map((item) => {
 								return (
 									<CartItem

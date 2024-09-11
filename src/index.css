@@ -89,3 +89,7 @@ body::-webkit-scrollbar-button:single-button:vertical:increment {
 .cartList-scrollbar::-webkit-scrollbar-thumb:hover {
 	background-color: darkgray; /* Darker on hover */
 }
+
+.last-tr-td-padding > tr:last-child > td {
+	padding-bottom: 25px;
+}
