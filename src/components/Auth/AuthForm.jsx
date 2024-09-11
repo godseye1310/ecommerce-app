@@ -49,7 +49,7 @@ const AuthForm = () => {
 
 				if (response.ok) {
 					const data = await response.json();
-					console.log(data);
+					// console.log(data);
 
 					const expirationTime = Date.now() + Number(data.expiresIn) * 1000;
 
