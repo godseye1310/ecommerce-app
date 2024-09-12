@@ -57,7 +57,7 @@ function App() {
 					element: (
 						<Suspense fallback={<SuspenseLoader />}>
 							<SuspenseWithDelay>
-								<SuspenseLoader />
+								<Contact />
 							</SuspenseWithDelay>
 						</Suspense>
 					),
