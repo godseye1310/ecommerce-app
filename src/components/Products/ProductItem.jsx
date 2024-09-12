@@ -26,6 +26,7 @@ const ProductItem = ({ title, price, imageUrl, product_id }) => {
 						className=" hover:scale-150 transition duration-300"
 						src={imageUrl}
 						alt="product img"
+						loading="lazy"
 					/>
 				</div>
 			</Link>

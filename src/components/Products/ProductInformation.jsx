@@ -1,16 +1,9 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import useCart from '../../store/cart-context';
 import useCartDisplay from '../../store/cart-display-context';
 import { FaStar } from 'react-icons/fa6';
 
-const ProductInformation = ({ productData }) => {
-	const { productID } = useParams();
-	// console.log(productData);
-	// console.log(productID);
-	const product = productData.find((item) => `cx${productData.indexOf(item)}ay` === productID);
-	// console.log(product);
-
+const ProductInformation = ({ product, productID }) => {
 	const { handleCartDisplay } = useCartDisplay();
 	const { addCartItem } = useCart();
 	const handleAddCart = () => {
@@ -31,6 +24,7 @@ const ProductInformation = ({ productData }) => {
 						src={product.imageUrl}
 						alt={product.title}
 						className="w-full h-auto object-cover rounded-md mb-4"
+						loading="lazy"
 					/>
 					<button
 						className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import HeaderCartBtn from '../Cart/HeaderCartBtn';
 import useAuth from '../../store/auth-context';
 import { FcMusic } from 'react-icons/fc';
@@ -7,9 +7,10 @@ import { FcMusic } from 'react-icons/fc';
 const Header = () => {
 	const location = useLocation();
 	const { isLoggedIn, logout } = useAuth();
+	const navigateTo = useNavigate();
 
 	const handleLogout = () => {
-		// navigateTo.replace('/auth');
+		navigateTo('/login', { replace: true });
 		logout();
 	};
 
