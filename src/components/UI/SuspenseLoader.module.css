@@ -1,0 +1,77 @@
+.cube-loader {
+	position: relative;
+	width: 105px;
+	height: 105px;
+	transform-style: preserve-3d;
+	animation: rotate 4s infinite linear;
+}
+
+/* Face (glass) styling */
+.face {
+	position: absolute;
+	width: 105px; /* Size of the cube */
+	height: 105px; /* Size of the cube */
+	background: rgba(255, 255, 255, 0); /*Toned-down glass-like effect */
+	border: 3px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+	backdrop-filter: blur(5px);
+	transform-style: preserve-3d;
+	right: -19.5%;
+}
+
+/* Position faces */
+.front {
+	transform: rotateY(0deg) translateZ(30px);
+}
+.back {
+	transform: rotateY(180deg) translateZ(30px);
+}
+.left {
+	transform: rotateY(-90deg) translateZ(30px);
+}
+.right {
+	transform: rotateY(90deg) translateZ(30px);
+}
+.top {
+	transform: rotateX(90deg) translateZ(30px);
+}
+.bottom {
+	transform: rotateX(-90deg) translateZ(30px);
+}
+
+/* Animation for rotation */
+@keyframes rotate {
+	0% {
+		transform: rotateX(0deg) rotateY(0deg);
+	}
+	100% {
+		transform: rotateX(360deg) rotateY(360deg);
+	}
+}
+
+.bounce {
+	animation: bounce-custom 1s infinite;
+}
+
+/* Delay classes for each div */
+.bounce-delay-1 {
+	animation-delay: 0.1s;
+}
+
+.bounce-delay-2 {
+	animation-delay: 0.2s; /* Delays second div by 0.3 seconds */
+}
+
+.bounce-delay-3 {
+	animation-delay: 0.3s; /* Delays third div by 0.6 seconds */
+}
+
+@keyframes bounce-custom {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-9px); /* Adjust bounce height */
+	}
+}
