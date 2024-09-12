@@ -55,20 +55,16 @@ function App() {
 				{
 					path: '/contact',
 					element: (
-						<Suspense fallback={<SuspenseLoader />}>
-							<SuspenseWithDelay>
-								<Contact />
-							</SuspenseWithDelay>
+						<Suspense fallback={null}>
+							<Contact />
 						</Suspense>
 					),
 				},
 				{
 					path: '/login',
 					element: (
-						<Suspense fallback={<SuspenseLoader />}>
-							<SuspenseWithDelay>
-								{!isLoggedIn ? <LoginPage /> : <Navigate to="/products" replace />}
-							</SuspenseWithDelay>
+						<Suspense fallback={null}>
+							{!isLoggedIn ? <LoginPage /> : <Navigate to="/products" replace />}
 						</Suspense>
 					),
 				},
